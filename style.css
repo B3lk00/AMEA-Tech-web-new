@@ -37,35 +37,32 @@ body {
 
 /* HERO */
 .hero {
+  position: relative;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #1e90ff20, #0b0f1a 70%);
+  background: radial-gradient(circle at top, #1e90ff25, #0b0f1a 70%);
+  overflow: hidden;
 }
 
+/* BACKGROUND LOGO */
+.hero-bg-logo {
+  position: absolute;
+  inset: 0;
+  background: url("images/logo.png") no-repeat center;
+  background-size: 520px;
+  opacity: 0.07; /* OVO JE KLJUČNO */
+  filter: blur(0.3px);
+  pointer-events: none;
+}
+
+/* HERO CONTENT IZNAD LOGA */
 .hero-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
   margin-top: 120px;
   padding: 20px;
 }
 
-.hero h1 {
-  font-size: 44px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 18px;
-  margin-bottom: 30px;
-  color: #cfd8ff;
-}
-
-.btn {
-  background: linear-gradient(135deg, #ff7a18, #ffb347);
-  color: black;
-  padding: 14px 32px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-}
 
 /* SERVICES */
 .services {
