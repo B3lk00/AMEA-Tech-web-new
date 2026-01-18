@@ -502,23 +502,15 @@ footer {
 }
 /*------------------------------------------------------------------------------------*/
 /* FORCE FIXED FOOTER (na samom kraju fajla) */
-.site-footer.fixed {
-  position: fixed !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  z-index: 9999 !important;
-
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background: #05070d;
   color: #aaa;
   text-align: center;
-  padding: 14px 10px;
-  font-size: 13px;
+  padding: 12px 10px;
+  z-index: 1000;
 }
-
-/* da sadržaj ne ode ispod footera */
-body {
-  padding-bottom: 70px;
-}
-
 /*------------------------------------------------------------------------------------*/
