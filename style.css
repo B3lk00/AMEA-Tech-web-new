@@ -330,6 +330,50 @@ footer {
   color: #6b7a99;
 }
 
+/*Prodaja stvari*/
+/* PRODUCT PREVIEW */
+.products-preview {
+  background: #f5f7fb;
+  padding: 40px 20px 60px;
+}
+
+.product-categories {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product-cat {
+  background: #fff;
+  border: 1px solid #e1e7f2;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.product-cat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(30,144,255,0.18);
+}
+
+.img-placeholder {
+  height: 150px;
+  background: linear-gradient(135deg, #e9eef7, #dbe3f3);
+}
+
+.cat-title {
+  background: #244c7a;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+
 /* TECH CLOCK PANEL */
 .tech-clock-panel {
   margin: 28px auto 34px;
