@@ -331,13 +331,32 @@ footer {
 }
 
 /* DIGITALNI SAT */
-.digital-clock {
+.digital-clock-wrap {
   margin-top: 14px;
   margin-bottom: 26px;
+}
+
+.digital-clock {
   font-family: "Courier New", monospace;
-  font-size: 20px;           /* taman */
+  font-size: 20px; /* taman */
   letter-spacing: 2px;
   color: #9bb8ff;
   text-shadow: 0 0 8px rgba(30,144,255,0.35);
 }
 
+.digital-date {
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #7f93c9;
+}
+
+/* TREPERENJE : */
+.blink {
+  animation: blinkAnim 1s infinite;
+}
+
+@keyframes blinkAnim {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
