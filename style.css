@@ -521,5 +521,14 @@ body{
   padding:20px 10px;
 }
 /*------------------------------------------------------------------------------------*/
+/* === PRODJA OPREME – ISTE DIMENZIJE KAO NASE USLUGE === */
+.products-strip {
+  background: #f5f7fb !important;
 
+  /* iste vrijednosti kao gornja sekcija */
+  padding-top: 80px !important;
+  padding-bottom: 100px !important;
+
+  margin-bottom: 160px !important;
+}
 /*------------------------------------------------------------------------------------*/
