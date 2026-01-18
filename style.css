@@ -241,13 +241,15 @@ footer {
 /* SERVICES STRIP (kao na slici) */
 .services-strip {
   background: #f5f7fb;
-  padding: 35px 16px 45px;
+  padding: 15px 16px 45px; /* manji top padding */
+  margin-top: -10px;      /* PODIŽE SEKCIJU GORE */
   color: #111;
 }
 
 .section-title {
-  max-width: 1100px;
-  margin: 0 auto 18px;
+  width: 100%;
+  margin: 0 0 18px; /* nema centra */
+  padding: 0 20px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -268,11 +270,11 @@ footer {
 }
 
 .service-icons {
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 20px; /* malo više razmaka */
 }
 
 .service-icon {
