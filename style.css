@@ -330,3 +330,14 @@ footer {
   color: #6b7a99;
 }
 
+/* DIGITALNI SAT */
+.digital-clock {
+  margin-top: 14px;
+  margin-bottom: 26px;
+  font-family: "Courier New", monospace;
+  font-size: 20px;           /* taman */
+  letter-spacing: 2px;
+  color: #9bb8ff;
+  text-shadow: 0 0 8px rgba(30,144,255,0.35);
+}
+
