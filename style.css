@@ -555,91 +555,70 @@ body{
   padding-left: 20px;
 }
 /*------------------------------------------------------------------------------------*/
-/* ABOUT */
-.about {
+/* ===== O NAMA – POSEBNA STRANICA ===== */
+.about-page {
   background: #0b0f1a;
   color: #eaeaea;
-  padding: 70px 20px 90px;
+  padding: 60px 20px 100px;
 }
 
-.about .section-title {
+.about-page .section-title {
   max-width: 1100px;
-  margin: 0 auto 22px;
+  margin: 0 auto 30px;
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.about .section-title h2 {
+.about-page .section-title h2 {
   font-size: 18px;
   font-weight: 700;
   color: #cfd8ff;
-  white-space: nowrap;
 }
 
-.about .section-title span {
+.about-page .section-title span {
   height: 2px;
-  background: rgba(255,255,255,0.20);
+  background: rgba(255,255,255,0.2);
   flex: 1;
-  border-radius: 2px;
 }
 
-.about-grid {
+.about-page .about-grid {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: auto;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 18px;
 }
 
-.about-card {
+.about-page .about-card {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(30,144,255,0.18);
   border-radius: 16px;
   padding: 22px;
 }
 
-.about-card h3 {
+.about-page .about-card h3 {
   color: #ffb347;
   margin-bottom: 10px;
 }
 
-.about-card p {
+.about-page .about-card p {
   color: #cfd8ff;
   margin-bottom: 10px;
 }
 
-.about-info {
+.about-page .about-info {
   display: grid;
   gap: 10px;
-  color: #cfd8ff;
 }
 
-.about-info .label {
+.about-page .about-info .label {
   color: #9bb8ff;
   font-weight: 700;
-  margin-right: 8px;
-}
-
-.about-info a {
-  color: #ffb347;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.about-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.btn-small {
-  padding: 10px 14px;
-  border-radius: 14px;
 }
 
 @media (max-width: 900px) {
-  .about-grid {
+  .about-page .about-grid {
     grid-template-columns: 1fr;
   }
 }
