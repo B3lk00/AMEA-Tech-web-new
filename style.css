@@ -235,3 +235,82 @@ footer {
   }
 }
 //-----------------------------------
+
+/* Ikonice usluga */
+
+/* SERVICES STRIP (kao na slici) */
+.services-strip {
+  background: #f5f7fb;
+  padding: 35px 16px 45px;
+  color: #111;
+}
+
+.section-title {
+  max-width: 1100px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-title h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b1a3a;
+  white-space: nowrap;
+}
+
+.section-title span {
+  height: 2px;
+  background: #d9e0ea;
+  flex: 1;
+  border-radius: 2px;
+}
+
+.service-icons {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.service-icon {
+  background: #fff;
+  border: 1px solid #e6edf7;
+  border-radius: 10px;
+  padding: 14px 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.service-icon img {
+  height: 44px;
+  width: auto;
+  margin-bottom: 8px;
+  opacity: 0.92;
+}
+
+.service-icon p {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2b3a55;
+}
+
+.service-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 35px rgba(30,144,255,0.12);
+  border-color: rgba(30,144,255,0.35);
+}
+
+@media (max-width: 900px) {
+  .service-icons { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 420px) {
+  .service-icons { grid-template-columns: 1fr; }
+}
+
