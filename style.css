@@ -501,18 +501,22 @@ footer {
   margin-bottom: 10px;
 }
 /*------------------------------------------------------------------------------------*/
-/* STICKY FOOTER */
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.site-footer {
-  margin-top: auto; /* OVO ZAKUCA FOOTER NA DNO */
+/* FIXED FOOTER */
+.site-footer.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
   background: #05070d;
   color: #aaa;
   text-align: center;
-  padding: 16px 10px;
+  padding: 14px 10px;
   font-size: 13px;
+}
+
+/* da sadržaj ne upadne ispod footera */
+body {
+  padding-bottom: 60px; /* prilagodi ako footer bude viši */
 }
 /*------------------------------------------------------------------------------------*/
