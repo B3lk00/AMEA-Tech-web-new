@@ -502,12 +502,20 @@ footer {
 }
 /*------------------------------------------------------------------------------------*/
 /* FORCE FIXED FOOTER (na samom kraju fajla) */
+html, body { height: 100%; }
+
+body{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.page{ flex: 1; }
+
 .site-footer{
-  position: static;   /* ili samo obriši position */
   background:#05070d;
   color:#aaa;
   text-align:center;
   padding:20px 10px;
 }
-body{ padding-bottom:0; }
 /*------------------------------------------------------------------------------------*/
