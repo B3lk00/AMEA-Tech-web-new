@@ -389,6 +389,11 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* veći razmak između Naše usluge i Prodaja opreme */
+.products-strip,
+.services-strip + .services-strip {
+  margin-top: 35px;
+}
 
 /* TECH CLOCK PANEL */
 .tech-clock-panel {
