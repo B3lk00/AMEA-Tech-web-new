@@ -498,7 +498,7 @@ footer {
 }
 
 .price {
-  color: #1e90ff;
+  color: #161d2a;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -532,7 +532,7 @@ body{
 .back-btn {
   display: inline-block;
   background: #A9A9A9;
-  color: #244c7a;
+  color: #161d2a;
   text-decoration: none;
   font-weight: 600;
 
