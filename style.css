@@ -333,11 +333,11 @@ footer {
 
 /*Prodaja stvari*/
 /* PRODUCT PREVIEW */
+
 .services-strip {
   background: #f5f7fb;
-  padding: 15px 16px 45px; /* manji top padding */
-  margin-top: -10px;      /* PODIŽE SEKCIJU GORE */
-  color: #111;
+  padding: 80px 20px 100px;  /* ← VEĆI BIJELI BLOK */
+  margin-bottom: 120px;
 }
 
 .product-categories {
