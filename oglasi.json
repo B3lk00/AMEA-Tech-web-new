@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": "pc-001",
+      "kategorija": "racunari",
+      "naziv": "Gaming PC Ryzen 5 / 16GB / RTX 3060",
+      "cijena": "1499 KM",
+      "stanje": "Novo",
+      "opis": "Odličan PC za gaming i rad. Garancija 12 mjeseci.",
+      "spec": ["Ryzen 5 5600", "16GB RAM", "RTX 3060", "1TB SSD"],
+      "slike": [
+        "images/oglasi/pc-001-1.jpg",
+        "images/oglasi/pc-001-2.jpg"
+      ],
+      "kontakt": {
+        "telefon": "+38760000000",
+        "email": "info@ameatech.ba"
+      }
+    },
+    {
+      "id": "lap-001",
+      "kategorija": "laptopi",
+      "naziv": "Laptop i5 / 16GB / 512GB SSD",
+      "cijena": "999 KM",
+      "stanje": "Polovno",
+      "opis": "Servisiran i očišćen, baterija dobra.",
+      "spec": ["Intel i5", "16GB RAM", "512GB SSD", "15.6\" FHD"],
+      "slike": ["images/oglasi/lap-001-1.jpg"],
+      "kontakt": { "telefon": "+38760000000", "email": "info@ameatech.ba" }
+    }
+  ]
+}
