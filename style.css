@@ -334,11 +334,9 @@ footer {
 /*Prodaja stvari*/
 /* PRODUCT PREVIEW */
 
-.services-strip {
-  background: #f5f7fb;
-  padding: 80px 20px 100px;  /* ← VEĆI BIJELI BLOK */
-  margin-bottom: 120px;
-}
+.products-preview {
+ background: #f5f7fb;
+ padding: 40px 20px 60px;
 
 .product-categories {
   max-width: 1100px;
