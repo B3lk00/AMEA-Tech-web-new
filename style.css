@@ -487,7 +487,7 @@ footer {
 }
 
 .product-card {
-  background: #fff;
+  background: #D3D3D3;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.06);
@@ -531,7 +531,7 @@ body{
 
 .back-btn {
   display: inline-block;
-  background: #ffffff;
+  background: #D3D3D3;
   color: #244c7a;
   text-decoration: none;
   font-weight: 600;
