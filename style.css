@@ -330,33 +330,52 @@ footer {
   color: #6b7a99;
 }
 
-/* DIGITALNI SAT */
-.digital-clock-wrap {
-  margin-top: 14px;
+/* FUTURISTIC CLOCK */
+
+.fancy-clock-wrapper {
+  margin-top: 18px;
   margin-bottom: 26px;
+  text-align: center;
 }
 
-.digital-clock {
-  font-family: "Courier New", monospace;
-  font-size: 20px; /* taman */
-  letter-spacing: 2px;
-  color: #9bb8ff;
-  text-shadow: 0 0 8px rgba(30,144,255,0.35);
+.fancy-clock {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 36px;
+  letter-spacing: 0.08em;
+  color: #0ff;
+  text-shadow:
+     0 0 6px #0ff,
+     0 0 12px #0ff,
+     0 0 18px #1affff,
+     0 0 30px #1affff,
+     0 0 45px #0affff;
+  animation: glowPulse 2s infinite ease-in-out;
 }
 
-.digital-date {
-  margin-top: 4px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #7f93c9;
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #0ff,
+      0 0 12px #0ff,
+      0 0 18px #1affff,
+      0 0 30px #1affff,
+      0 0 45px #0affff;
+  }
+  50% {
+    text-shadow:
+      0 0 8px #0ff,
+      0 0 20px #0ff,
+      0 0 28px #1affff,
+      0 0 40px #1affff,
+      0 0 60px #0affff;
+  }
 }
 
-/* TREPERENJE : */
-.blink {
-  animation: blinkAnim 1s infinite;
-}
-
-@keyframes blinkAnim {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+.fancy-date {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+  color: #8efcff;
+  text-shadow: 0 0 6px #8efcff, 0 0 10px #8efcff;
 }
