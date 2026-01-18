@@ -330,52 +330,37 @@ footer {
   color: #6b7a99;
 }
 
-/* FUTURISTIC CLOCK */
+/* TECH CLOCK PANEL */
+.tech-clock-panel {
+  margin: 22px auto 30px;
+  padding: 18px 34px 16px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 
-.fancy-clock-wrapper {
-  margin-top: 18px;
-  margin-bottom: 26px;
-  text-align: center;
+  border: 1px solid rgba(120, 150, 255, 0.25);
+  border-radius: 14px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.015)
+  );
+
+  backdrop-filter: blur(6px);
 }
 
-.fancy-clock {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 36px;
-  letter-spacing: 0.08em;
-  color: #0ff;
-  text-shadow:
-     0 0 6px #0ff,
-     0 0 12px #0ff,
-     0 0 18px #1affff,
-     0 0 30px #1affff,
-     0 0 45px #0affff;
-  animation: glowPulse 2s infinite ease-in-out;
+.tech-time {
+  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+  font-size: 34px;            /* veći, ali ne napadan */
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #cfd8ff;
 }
 
-@keyframes glowPulse {
-  0%, 100% {
-    text-shadow:
-      0 0 6px #0ff,
-      0 0 12px #0ff,
-      0 0 18px #1affff,
-      0 0 30px #1affff,
-      0 0 45px #0affff;
-  }
-  50% {
-    text-shadow:
-      0 0 8px #0ff,
-      0 0 20px #0ff,
-      0 0 28px #1affff,
-      0 0 40px #1affff,
-      0 0 60px #0affff;
-  }
-}
-
-.fancy-date {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 16px;
-  margin-top: 6px;
-  letter-spacing: 0.05em;
-  color: #8efcff;
-  text-shadow: 0 0 6px #8efcff, 0 0 10px #8efcff;
+.tech-date {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #9aa7d8;
 }
