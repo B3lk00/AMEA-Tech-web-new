@@ -373,22 +373,23 @@ footer {
   font-weight: 600;
 }
 
-/* 3 kartice u istom stilu (Prodaja opreme) */
-.service-icons-3 {
-  grid-template-columns: repeat(3, 1fr);
+/* 4 kartice – Prodaja opreme */
+.service-icons-4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
-@media (max-width: 900px) {
-  .service-icons-3 {
+@media (max-width: 1100px) {
+  .service-icons-4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 420px) {
-  .service-icons-3 {
+@media (max-width: 500px) {
+  .service-icons-4 {
     grid-template-columns: 1fr;
   }
 }
+
 /* veći razmak između Naše usluge i Prodaja opreme */
 .services-strip {
   margin-bottom: 140px;
