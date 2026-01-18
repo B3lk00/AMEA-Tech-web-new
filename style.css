@@ -502,18 +502,26 @@ footer {
 }
 /*------------------------------------------------------------------------------------*/
 /* FORCE FIXED FOOTER (na samom kraju fajla) */
-footer {
-  position: fixed;
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-bottom: 56px; /* da sadržaj ne ide ispod footera */
+}
+
+/* FIXED FOOTER */
+.site-footer {
+  position: fixed !important;
   bottom: 0;
   left: 0;
+  right: 0;
   width: 100%;
   background: #05070d;
   color: #aaa;
   text-align: center;
-  padding: 12px 10px;
-  z-index: 1000;
-}
-body {
-  padding-bottom: 50px; /* mora biti visina footera */
+  padding: 14px 10px;
+  z-index: 9999;
 }
 /*------------------------------------------------------------------------------------*/
