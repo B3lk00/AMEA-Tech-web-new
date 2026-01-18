@@ -390,10 +390,10 @@ footer {
   }
 }
 /* veći razmak između Naše usluge i Prodaja opreme */
-.products-strip,
-.services-strip + .services-strip {
-  margin-top: 35px;
+#usluge {
+  margin-bottom: 120px;
 }
+
 
 /* TECH CLOCK PANEL */
 .tech-clock-panel {
