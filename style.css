@@ -402,7 +402,7 @@ footer {
 /* TECH CLOCK PANEL */
 .tech-clock-panel {
   margin: 28px auto 34px;
-  padding: 26px 44px 24px;
+  padding: 36px 60px 34px;
   display: inline-flex;
   flex-direction: column;
   gap: 12px;
@@ -435,7 +435,7 @@ footer {
 
 /* SAT */
 .tech-time {
-  font-size: 40px;      /* VEĆI SAT */
+  font-size: 54px;      /* VEĆI SAT */
   font-weight: 600;
   letter-spacing: 2px;
   color: #dbe3ff;
@@ -443,7 +443,7 @@ footer {
 
 /* DATUM */
 .tech-date {
-  font-size: 15px;      /* VEĆI DATUM */
+  font-size: 19px;      /* VEĆI DATUM */
   letter-spacing: 1.6px;
   color: #a9b6e8;
 }
