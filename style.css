@@ -390,8 +390,8 @@ footer {
   }
 }
 /* veći razmak između Naše usluge i Prodaja opreme */
-#usluge {
-  margin-bottom: 120px;
+.services-strip {
+  margin-bottom: 90px;
 }
 
 
