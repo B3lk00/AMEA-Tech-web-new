@@ -316,3 +316,17 @@ footer {
   .service-icons { grid-template-columns: 1fr; }
 }
 
+.service-icon .title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #2b3a55;
+}
+
+.service-icon .desc {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #6b7a99;
+}
+
