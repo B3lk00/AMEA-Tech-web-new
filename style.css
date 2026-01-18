@@ -332,35 +332,66 @@ footer {
 
 /* TECH CLOCK PANEL */
 .tech-clock-panel {
-  margin: 22px auto 30px;
-  padding: 18px 34px 16px;
+  margin: 28px auto 34px;
+  padding: 26px 44px 24px;
   display: inline-flex;
   flex-direction: column;
+  gap: 12px;
   align-items: center;
-  gap: 6px;
 
-  border: 1px solid rgba(120, 150, 255, 0.25);
-  border-radius: 14px;
+  border: 1px solid rgba(120, 150, 255, 0.35);
+  border-radius: 18px;
 
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.015)
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
   );
 
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
 
+/* RED SA IKONOM */
+.tech-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* IKONE */
+.tech-icon {
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+/* SAT */
 .tech-time {
-  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
-  font-size: 34px;            /* veći, ali ne napadan */
+  font-size: 40px;      /* VEĆI SAT */
   font-weight: 600;
   letter-spacing: 2px;
-  color: #cfd8ff;
+  color: #dbe3ff;
 }
 
+/* DATUM */
 .tech-date {
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  color: #9aa7d8;
+  font-size: 15px;      /* VEĆI DATUM */
+  letter-spacing: 1.6px;
+  color: #a9b6e8;
+}
+
+/* FADE IN ANIMACIJA */
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
