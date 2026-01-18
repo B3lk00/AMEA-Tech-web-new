@@ -1,6 +1,9 @@
 function updateTechClock() {
   const timeEl = document.getElementById("techTime");
   const dateEl = document.getElementById("techDate");
+
+  if (!timeEl || !dateEl) return;
+
   const now = new Date();
 
   const h = String(now.getHours()).padStart(2, "0");
