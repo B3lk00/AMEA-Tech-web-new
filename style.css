@@ -513,4 +513,7 @@ footer {
   padding: 12px 10px;
   z-index: 1000;
 }
+body {
+  padding-bottom: 50px; /* mora biti visina footera */
+}
 /*------------------------------------------------------------------------------------*/
