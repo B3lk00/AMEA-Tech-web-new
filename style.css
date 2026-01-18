@@ -373,6 +373,22 @@ footer {
   font-weight: 600;
 }
 
+/* 3 kartice u istom stilu (Prodaja opreme) */
+.service-icons-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .service-icons-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .service-icons-3 {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* TECH CLOCK PANEL */
 .tech-clock-panel {
