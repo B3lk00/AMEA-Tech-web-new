@@ -333,16 +333,16 @@ footer {
 
 /*Prodaja stvari*/
 /* PRODUCT PREVIEW */
-
 .products-preview {
- background: #f5f7fb;
- padding: 40px 20px 60px;
+  background: #f5f7fb;
+  padding: 40px 20px 60px;
+}
 
 .product-categories {
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* ako hoćeš 4 */
   gap: 20px;
 }
 
@@ -520,7 +520,5 @@ body{
   padding:20px 10px;
 }
 /*------------------------------------------------------------------------------------*/
-.services-strip {
-  margin-bottom: 120px;   /* ← OVO povećava razmak do footera */
-}
+
 /*------------------------------------------------------------------------------------*/
