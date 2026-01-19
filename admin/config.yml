@@ -3,7 +3,9 @@ backend:
   repo: B3lk00/AMEA-Tech-web-new
   branch: main
 
-  auth_endpoint: https://decap-auth-new.belmins1617.workers.dev/auth
+  base_url: https://decap-auth-new.belmins1617.workers.dev
+  auth_endpoint: auth
+
   api_root: https://api.github.com
   site_url: https://amea-tech-web-new.pages.dev
 
