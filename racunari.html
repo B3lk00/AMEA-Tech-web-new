@@ -21,10 +21,32 @@
   <p>© 2026 AMEA Tech d.o.o.</p>
 </footer>
 
-<script src="oglasi-api.js"></script>
 <script>
-  initOglasi("racunari");
+(async () => {
+  const container = document.getElementById("oglasi");
+  container.innerHTML = "<p>Ucitavam oglase...</p>";
+
+  const API = "https://amea-oglasi-api.belmins1617.workers.dev";
+  const res = await fetch(API + "/api/oglasi?kategorija=racunari", { cache: "no-store" });
+  const data = await res.json();
+
+  const items = data.items || [];
+  if (!items.length) {
+    container.innerHTML = "<p>Nema oglasa.</p>";
+    return;
+  }
+
+  container.innerHTML = items.map(o => `
+    <div style="border:2px solid red; padding:12px; margin:10px;">
+      <h3>${o.naziv}</h3>
+      <p><b>Cijena:</b> ${o.cijena}</p>
+      <p><b>Stanje:</b> ${o.stanje}</p>
+      <p><b>Kategorija:</b> ${o.kategorija}</p>
+    </div>
+  `).join("");
+})();
 </script>
+
 
 </body>
 </html>
