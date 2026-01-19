@@ -151,11 +151,11 @@
     if (!payload.naziv) return setStatus("Naziv je obavezan.");
 
     setStatus("Objavljujem...");
-    const res = await fetch(API_BASE + "/api/oglasi", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + key },
-      body: JSON.stringify(payload),
-    });
+const res = await fetch(API_BASE + "/api/oglasi", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
 
     if (!res.ok) {
       const t = await res.text();
@@ -175,10 +175,9 @@
     if (!key) return setStatus("Unesi ADMIN_KEY.");
 
     setStatus("Brišem...");
-    const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
-      method: "DELETE",
-    headers: { "Authorization": "Bearer " + key },
-    });
+const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
+  method: "DELETE",
+});
 
     if (!res.ok) {
       const t = await res.text();
