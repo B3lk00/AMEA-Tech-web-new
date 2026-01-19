@@ -3,19 +3,9 @@ backend:
   repo: B3lk00/AMEA-Tech-web-new
   branch: main
 
-  # decap oauth proxy (worker)
-  base_url: https://decap-auth-new.belmins1617.workers.dev
-  auth_endpoint: auth
-
-  # GitHub API (nekad Decap bez ovoga "zapne")
+  auth_endpoint: https://decap-auth-new.belmins1617.workers.dev/auth
   api_root: https://api.github.com
-
-  # tvoj sajt (pomaže kod origin/callback tokova)
   site_url: https://amea-tech-web-new.pages.dev
-
-# (opcionalno) ako želiš uredniji flow u timu
-publish_mode: editorial_workflow
-
 
 media_folder: "images/oglasi"
 public_folder: "/images/oglasi"
