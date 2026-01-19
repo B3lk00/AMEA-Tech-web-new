@@ -3,6 +3,7 @@ backend:
   repo: B3lk00/AMEA-Tech-web-new
   branch: main
   base_url: https://decap-auth-new.belmins1617.workers.dev
+  auth_endpoint: auth
 
 media_folder: "images/oglasi"
 public_folder: "/images/oglasi"
