@@ -162,7 +162,7 @@
     setStatus("Objavljujem...");
     const res = await fetch(API_BASE + "/api/oglasi", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Admin-Key": key },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + key },
       body: JSON.stringify(payload),
     });
 
@@ -186,7 +186,7 @@
     setStatus("Brišem...");
     const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
       method: "DELETE",
-      headers: { "X-Admin-Key": key },
+    headers: { "Authorization": "Bearer " + key },
     });
 
     if (!res.ok) {
