@@ -1,5 +1,5 @@
 async function ucitajOglase() {
-  const res = await fetch("oglasi.json?v=1");
+  const res = await fetch("/oglasi.json?v=1");
   if (!res.ok) throw new Error("Ne mogu ucitati oglasi.json");
   const data = await res.json();
   return data.items || [];
@@ -17,19 +17,19 @@ function renderOglasi(items, container) {
 
     return `
       <article class="ad-card">
-        ${img ? `<img class="ad-img" src="${img}" alt="${o.naziv}">` : ``}
+        ${img ? `<img class="ad-img" src="/${img}" alt="${o.naziv}">` : ""}
 
         <div class="ad-body">
           <div class="ad-top">
-            <h3 class="ad-title">${o.naziv}</h3>
+            <h3 class="ad-title">${o.naziv || ""}</h3>
             <div class="ad-price">${o.cijena || ""}</div>
           </div>
 
           <div class="ad-meta">
-            <span class="ad-badge">${o.stanje || ""}</span>
+            ${o.stanje ? `<span class="ad-badge">${o.stanje}</span>` : ""}
           </div>
 
-          <p class="ad-desc">${o.opis || ""}</p>
+          ${o.opis ? `<p class="ad-desc">${o.opis}</p>` : ""}
 
           ${spec ? `<ul class="ad-spec">${spec}</ul>` : ""}
 
@@ -55,3 +55,5 @@ async function initOglasi(kategorija) {
     container.innerHTML = `<p style="color:#b00;">Greška: ${e.message}</p>`;
   }
 }
+
+window.initOglasi = initOglasi;
