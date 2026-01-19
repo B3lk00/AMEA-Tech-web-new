@@ -2,7 +2,7 @@ backend:
   name: github
   repo: B3lk00/AMEA-Tech-web-new
   branch: main
-  base_url: https://decap-auth.belmins1617.workers.dev   # npr. https://decap-auth.tvojdomen.com
+  base_url: https://decap-auth-proxy.belmins1617.workers.dev   # npr. https://decap-auth.tvojdomen.com
 
 media_folder: "images/oglasi"
 public_folder: "/images/oglasi"
