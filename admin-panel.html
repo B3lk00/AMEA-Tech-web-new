@@ -128,52 +128,46 @@
     setStatus("");
   }
 
-  async function create() {
-    const key = $("key").value.trim();
-    if (!key) return setStatus("Unesi ADMIN_KEY.");
-
-    const specLines = $("spec").value.split("\n").map(s => s.trim()).filter(Boolean);
-
-    const payload = {
-      kategorija: $("kategorija").value,
-      naziv: $("naziv").value.trim(),
-      cijena: $("cijena").value.trim(),
-      stanje: $("stanje").value,
-      opis: $("opis").value.trim(),
-      spec: specLines,
-      slike: [], // slike dodajemo kasnije (R2)
-      kontakt: {
-        telefon: $("telefon").value.trim(),
-        email: $("email").value.trim(),
-      }
-    };
-
-    if (!payload.naziv) return setStatus("Naziv je obavezan.");
-
-    setStatus("Objavljujem...");
-const res = await fetch(API_BASE + "/api/oglasi", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload),
-});
-
-    if (!res.ok) {
-      const t = await res.text();
-      return setStatus("Greška: " + t);
+async function create() {
+  const payload = {
+    kategorija: $("kategorija").value,
+    naziv: $("naziv").value.trim(),
+    cijena: $("cijena").value.trim(),
+    stanje: $("stanje").value,
+    opis: $("opis").value.trim(),
+    spec: $("spec").value.split("\n").map(s => s.trim()).filter(Boolean),
+    slike: [],
+    kontakt: {
+      telefon: $("telefon").value.trim(),
+      email: $("email").value.trim(),
     }
+  };
 
-    $("naziv").value = "";
-    $("cijena").value = "";
-    $("opis").value = "";
-    $("spec").value = "";
-    setStatus("Objavljeno ✅");
-    await load();
+  if (!payload.naziv) return setStatus("Naziv je obavezan.");
+
+  setStatus("Objavljujem...");
+
+  const res = await fetch(API_BASE + "/api/oglasi", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const t = await res.text();
+    return setStatus("Greška: " + t);
   }
 
-  async function del(id) {
-    const key = $("key").value.trim();
-    if (!key) return setStatus("Unesi ADMIN_KEY.");
+  $("naziv").value = "";
+  $("cijena").value = "";
+  $("opis").value = "";
+  $("spec").value = "";
+  setStatus("Objavljeno ✅");
+  await load();
+}
 
+
+  async function del(id) {
     setStatus("Brišem...");
 const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
   method: "DELETE",
