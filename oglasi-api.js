@@ -37,25 +37,12 @@ function renderOglasi(items, container) {
 async function initOglasi(kategorija) {
   const container = document.getElementById("oglasi");
   if (!container) return;
-
-  container.innerHTML = "<p>Učitavam oglase...</p>";
-  console.log("initOglasi start:", kategorija);
-
   try {
     const items = await ucitajOglase(kategorija);
-    console.log("items length:", items.length, items);
-
     renderOglasi(items, container);
-
-    console.log("after render len:", container.innerHTML.length);
-
-    // ako neko kasnije briše, uhvatićemo
-    setTimeout(() => {
-      console.log("after 1s len:", container.innerHTML.length);
-    }, 1000);
-
   } catch (e) {
-    console.error(e);
     container.innerHTML = `<p style="color:#b00;">Greška: ${e.message}</p>`;
   }
 }
+
+window.initOglasi = initOglasi;
