@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: TVOJE_IME/TVOJ_REPO
+  repo: USERNAME/REPO
   branch: main
-  base_url: https://TVOJ-WORKER-DOMAIN   # ovdje ide OAuth proxy (korak 3)
+  base_url: https://TVOJ-PROXY-DOMAIN   # npr. https://decap-auth.tvojdomen.com
 
 media_folder: "images/oglasi"
 public_folder: "/images/oglasi"
@@ -21,7 +21,7 @@ collections:
       - { label: "Cijena", name: "cijena", widget: "string", required: false }
       - { label: "Stanje", name: "stanje", widget: "select", options: ["Novo","Polovno"], required: false }
       - { label: "Opis", name: "opis", widget: "text", required: false }
-      - { label: "Spec", name: "spec", widget: "list", required: false }
+      - { label: "Specifikacije", name: "spec", widget: "list", required: false }
       - label: "Slike"
         name: "slike"
         widget: "list"
