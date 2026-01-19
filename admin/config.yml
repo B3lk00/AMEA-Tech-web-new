@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: USERNAME/REPO
+  repo: B3lk00/AMEA-Tech-web-new
   branch: main
   base_url: https://decap-auth.belmins1617.workers.dev   # npr. https://decap-auth.tvojdomen.com
 
