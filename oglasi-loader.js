@@ -1,4 +1,4 @@
-async function ucitajOglase() {
+async function ucitajOglaseIndex() {
   const url = `./oglasi/index.json?ts=${Date.now()}`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error("Ne mogu ucitati oglasi/index.json");
@@ -14,7 +14,7 @@ function renderOglasi(items, container) {
 
   container.innerHTML = items.map(o => {
     const img = (o.slike && o.slike.length) ? `${o.slike[0]}?ts=${Date.now()}` : "";
-    const spec = (o.spec || []).slice(0, 4).map(s => `<li>${s}</li>`).join("");
+    const spec = (o.spec || []).slice(0, 5).map(s => `<li>${s}</li>`).join("");
 
     return `
       <article class="ad-card">
@@ -36,10 +36,11 @@ function renderOglasi(items, container) {
 async function initOglasi(kategorija) {
   const container = document.getElementById("oglasi");
   if (!container) return;
+
   container.innerHTML = `<p style="opacity:.8;">Učitavam oglase...</p>`;
 
   try {
-    const items = await ucitajOglase();
+    const items = await ucitajOglaseIndex();
     const filtrirano = items.filter(o => o.kategorija === kategorija);
     renderOglasi(filtrirano, container);
   } catch (e) {
