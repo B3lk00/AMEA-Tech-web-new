@@ -1,4 +1,4 @@
-const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev"; // stavi svoj
+const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev";
 
 async function ucitajOglase(kategorija) {
   const res = await fetch(`${API_BASE}/api/oglasi?kategorija=${encodeURIComponent(kategorija)}`, { cache: "no-store" });
