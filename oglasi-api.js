@@ -1,6 +1,8 @@
 const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev";
+console.log("oglasi-api.js loaded ✅", API_BASE);
 
 async function ucitajOglase(kategorija) {
+  console.log("initOglasi called:", kategorija);
   const res = await fetch(`${API_BASE}/api/oglasi?kategorija=${encodeURIComponent(kategorija)}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Ne mogu učitati oglase");
   const data = await res.json();
