@@ -1,1 +1,209 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin panel | Oglasi</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-wrap{max-width:1100px;margin:40px auto;padding:0 20px}
+    .admin-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .grid-1{display:grid;grid-template-columns:1fr;gap:16px}
+    label{font-weight:600;font-size:14px}
+    input,select,textarea{width:100%;padding:10px 12px;border:1px solid #d6deee;border-radius:10px}
+    textarea{min-height:110px}
+    .row{display:flex;gap:10px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+    .btn-primary{background:#1e90ff;color:#fff}
+    .btn-danger{background:#b00020;color:#fff}
+    .list{margin-top:20px;display:grid;gap:12px}
+    .item{border:1px solid #e1e7f2;border-radius:12px;padding:14px;display:flex;justify-content:space-between;gap:12px}
+    .muted{opacity:.75}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1 style="color:#fff;margin-bottom:14px">Admin panel – Oglasi</h1>
 
+    <div class="admin-card">
+      <div class="grid">
+        <div class="grid-1">
+          <div>
+            <label>Admin ključ (samo ti/vlasnik)</label>
+            <input id="key" placeholder="Unesi ADMIN_KEY">
+            <p class="muted">Ovo je privremeno. Kasnije ćemo sakriti ključ i zaključati panel Cloudflare Access-om.</p>
+          </div>
+
+          <div class="grid">
+            <div>
+              <label>Kategorija</label>
+              <select id="kategorija">
+                <option value="racunari">Računari</option>
+                <option value="laptopi">Laptopi</option>
+                <option value="monitori">Monitori</option>
+                <option value="toneri">Toneri</option>
+              </select>
+            </div>
+            <div>
+              <label>Stanje</label>
+              <select id="stanje">
+                <option value="">(opciono)</option>
+                <option value="Novo">Novo</option>
+                <option value="Polovno">Polovno</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label>Naziv</label>
+            <input id="naziv" placeholder="npr. Gaming PC Ryzen 5 / 16GB / RTX 3060">
+          </div>
+
+          <div class="grid">
+            <div>
+              <label>Cijena</label>
+              <input id="cijena" placeholder="npr. 1499 KM">
+            </div>
+            <div>
+              <label>Telefon</label>
+              <input id="telefon" placeholder="+387...">
+            </div>
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input id="email" placeholder="info@...">
+          </div>
+
+          <div>
+            <label>Opis</label>
+            <textarea id="opis" placeholder="Kratak opis oglasa..."></textarea>
+          </div>
+
+          <div>
+            <label>Specifikacije (svaka u novi red)</label>
+            <textarea id="spec" placeholder="Ryzen 5 5600&#10;16GB RAM&#10;1TB SSD"></textarea>
+          </div>
+
+          <div class="row">
+            <button class="btn btn-primary" id="btnObjavi">Objavi oglas</button>
+            <button class="btn" id="btnReload">Osvježi listu</button>
+            <span id="status" class="muted"></span>
+          </div>
+        </div>
+
+        <div>
+          <h3>Postojeći oglasi</h3>
+          <div id="list" class="list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // UPISI OVDE URL SVOG WORKERA:
+  const API_BASE = "PASTE_WORKER_URL_HERE"; // npr. https://amea-oglasi-api.belmins1617.workers.dev
+
+  const $ = (id) => document.getElementById(id);
+
+  function setStatus(msg){ $("status").textContent = msg || ""; }
+
+  async function load() {
+    setStatus("Učitavam...");
+    const res = await fetch(API_BASE + "/api/oglasi", { cache: "no-store" });
+    const data = await res.json();
+    const items = data.items || [];
+
+    const list = $("list");
+    if (!items.length) {
+      list.innerHTML = '<div class="muted">Nema oglasa.</div>';
+      setStatus("");
+      return;
+    }
+
+    list.innerHTML = items.map(o => `
+      <div class="item">
+        <div>
+          <div><b>${o.naziv}</b> <span class="muted">(${o.kategorija})</span></div>
+          <div class="muted">${o.cijena || ""} ${o.stanje ? "• " + o.stanje : ""}</div>
+          <div class="muted">id: ${o.id}</div>
+        </div>
+        <button class="btn btn-danger" onclick="del('${o.id}')">Obriši</button>
+      </div>
+    `).join("");
+
+    setStatus("");
+  }
+
+  async function create() {
+    const key = $("key").value.trim();
+    if (!key) return setStatus("Unesi ADMIN_KEY.");
+
+    const specLines = $("spec").value.split("\n").map(s => s.trim()).filter(Boolean);
+
+    const payload = {
+      kategorija: $("kategorija").value,
+      naziv: $("naziv").value.trim(),
+      cijena: $("cijena").value.trim(),
+      stanje: $("stanje").value,
+      opis: $("opis").value.trim(),
+      spec: specLines,
+      slike: [], // slike dodajemo kasnije (R2)
+      kontakt: {
+        telefon: $("telefon").value.trim(),
+        email: $("email").value.trim(),
+      }
+    };
+
+    if (!payload.naziv) return setStatus("Naziv je obavezan.");
+
+    setStatus("Objavljujem...");
+    const res = await fetch(API_BASE + "/api/oglasi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Admin-Key": key },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const t = await res.text();
+      return setStatus("Greška: " + t);
+    }
+
+    $("naziv").value = "";
+    $("cijena").value = "";
+    $("opis").value = "";
+    $("spec").value = "";
+    setStatus("Objavljeno ✅");
+    await load();
+  }
+
+  async function del(id) {
+    const key = $("key").value.trim();
+    if (!key) return setStatus("Unesi ADMIN_KEY.");
+
+    setStatus("Brišem...");
+    const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
+      method: "DELETE",
+      headers: { "X-Admin-Key": key },
+    });
+
+    if (!res.ok) {
+      const t = await res.text();
+      return setStatus("Greška: " + t);
+    }
+
+    setStatus("Obrisano ✅");
+    await load();
+  }
+
+  window.del = del;
+
+  $("btnObjavi").addEventListener("click", create);
+  $("btnReload").addEventListener("click", load);
+
+  load();
+</script>
+</body>
+</html>
