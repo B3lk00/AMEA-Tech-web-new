@@ -14,7 +14,7 @@ function renderOglasi(items, container) {
   }
 
   container.innerHTML = items.map(o => `
-    <article class="ad-card" style="display:block; border:2px solid red; padding:12px; margin:12px 0; background:#fff; color:#000;">
+    <article class="ad-card">
       <div class="ad-body">
         <div class="ad-top">
           <h3 class="ad-title">${o.naziv || ""}</h3>
