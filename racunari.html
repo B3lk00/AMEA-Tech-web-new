@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Računari | AMEA Tech</title>
+  <link rel="stylesheet" href="style.css?v=1.4">
+</head>
+<body>
+
+<header class="simple-header">
+   <h1>Računari</h1>
+  <div class="back-wrapper">
+    <a href="index.html" class="back-btn">← Nazad</a>
+  </div>
+</header>
+
+<main class="page">
+  <!-- Ovdje JS ubacuje oglase -->
+  <div class="product-list" id="oglasi"></div>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 AMEA Tech d.o.o.</p>
+</footer>
+
+<script src="oglasi.js?v=1"></script>
+<script>
+  initOglasi("racunari");
+</script>
+  
+<script src="oglasi-loader.js?v=2"></script>
+<script>initOglasi("racunari");</script>
+
+</body>
+</html>

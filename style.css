@@ -1,0 +1,695 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b0f1a;
+  color: #eaeaea;
+  height: 100%;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.nav .logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1e90ff;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+/*Hero*/
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e90ff25, #0b0f1a 70%);
+  overflow: hidden;
+}
+
+/* NAV IZNAD SVEGA */
+.nav {
+  position: relative;
+  z-index: 3;
+}
+
+/* LOGO U POZADINI */
+.hero-bg-logo {
+  position: absolute;
+  inset: 0;
+  background: url("images/logo.png") no-repeat;
+  background-size: 520px;
+  background-position: center 58%; /* malo niže */
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 1;
+  animation: floatLogo 10s ease-in-out infinite;
+}
+
+/* TEKST IZNAD LOGA */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 120px;
+  padding: 20px;
+}
+
+/* ANIMACIJA - LAGANO PLUTANJE */
+@keyframes floatLogo {
+  0%   { transform: translateY(0px) scale(1); }
+  50%  { transform: translateY(-12px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+
+/* SERVICES */
+.services {
+  padding: 80px 20px;
+  background: #f5f7fb;
+  color: #111;
+}
+
+.services h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
+.cards {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(30,144,255,0.15);
+}
+
+.card h3 {
+  color: #1e90ff;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: #05070d;
+  text-align: center;
+  padding: 20px;
+  color: #aaa;
+}
+
+.logo img {
+  height: 100px;
+}
+
+//--------------------------------
+/* CONTACT */
+.contact {
+  padding: 80px 20px;
+  background: #0b0f1a;
+  color: #eaeaea;
+}
+
+.contact-wrap {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.contact-info p {
+  color: #cfd8ff;
+  margin-bottom: 25px;
+  max-width: 520px;
+}
+
+.info-list {
+  display: grid;
+  gap: 14px;
+}
+
+.info-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(30, 144, 255, 0.18);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.info-item .label {
+  display: inline-block;
+  width: 120px;
+  color: #9bb8ff;
+}
+
+.info-item a {
+  color: #ffb347;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 122, 24, 0.22);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.contact-form h3 {
+  margin-bottom: 16px;
+  color: #ffb347;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 14px;
+  color: #cfd8ff;
+  margin-bottom: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(30, 144, 255, 0.65);
+}
+
+.btn-dark {
+  border: none;
+  cursor: pointer;
+}
+
+.small-note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #9aa7c7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .contact-wrap {
+    grid-template-columns: 1fr;
+  }
+  .info-item .label {
+    width: auto;
+    display: block;
+    margin-bottom: 6px;
+  }
+}
+//-----------------------------------
+
+/* Ikonice usluga */
+
+/* SERVICES STRIP (kao na slici) */
+.services-strip {
+  background: #f5f7fb;
+  padding: 15px 16px 45px; /* manji top padding */
+  margin-top: -10px;      /* PODIŽE SEKCIJU GORE */
+  color: #111;
+}
+
+.section-title {
+  width: 100%;
+  margin: 0 0 18px; /* nema centra */
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-title h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b1a3a;
+  white-space: nowrap;
+}
+
+.section-title span {
+  height: 2px;
+  background: #d9e0ea;
+  flex: 1;
+  border-radius: 2px;
+}
+
+.service-icons {
+  width: 100%;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* malo više razmaka */
+}
+
+.service-icon {
+  background: #fff;
+  border: 1px solid #e6edf7;
+  border-radius: 10px;
+  padding: 14px 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.service-icon img {
+  height: 44px;
+  width: auto;
+  margin-bottom: 8px;
+  opacity: 0.92;
+}
+
+.service-icon p {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2b3a55;
+}
+
+.service-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 35px rgba(30,144,255,0.12);
+  border-color: rgba(30,144,255,0.35);
+}
+
+@media (max-width: 900px) {
+  .service-icons { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 420px) {
+  .service-icons { grid-template-columns: 1fr; }
+}
+
+.service-icon .title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #2b3a55;
+}
+
+.service-icon .desc {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #6b7a99;
+}
+
+/*Prodaja stvari*/
+/* PRODUCT PREVIEW */
+.products-preview {
+  background: #f5f7fb;
+  padding: 90px 20px 120px;
+  margin-bottom: 120px;
+}
+
+.product-categories {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* ako hoćeš 4 */
+  gap: 20px;
+}
+
+.product-cat {
+  background: #fff;
+  border: 1px solid #e1e7f2;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.product-cat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(30,144,255,0.18);
+}
+
+.img-placeholder {
+  height: 150px;
+  background: linear-gradient(135deg, #e9eef7, #dbe3f3);
+}
+
+.cat-title {
+  background: #244c7a;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+/* 4 kartice – Prodaja opreme */
+.service-icons-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .service-icons-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .service-icons-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* veći razmak između Naše usluge i Prodaja opreme */
+.services-strip {
+  margin-bottom: 140px;
+}
+
+
+/* TECH CLOCK PANEL */
+.tech-clock-panel {
+  margin: 28px auto 34px;
+  padding: 36px 60px 34px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+
+  border: 1px solid rgba(120, 150, 255, 0.35);
+  border-radius: 18px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  backdrop-filter: blur(8px);
+}
+
+/* RED SA IKONOM */
+.tech-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* IKONE */
+.tech-icon {
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+/* SAT */
+.tech-time {
+  font-size: 54px;      /* VEĆI SAT */
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #dbe3ff;
+}
+
+/* DATUM */
+.tech-date {
+  font-size: 19px;      /* VEĆI DATUM */
+  letter-spacing: 1.6px;
+  color: #a9b6e8;
+}
+
+/* FADE IN ANIMACIJA */
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* css za racunare laptoper i tonere */
+.simple-header {
+  padding: 30px;
+  background: #0b0f1a;
+  color: #fff;
+}
+
+.simple-header a {
+  color: #203450;
+  text-decoration: none;
+}
+
+.product-list {
+  max-width: 1100px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.product-card {
+  background: #A9A9A9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+.product-card h3 {
+  margin-bottom: 6px;
+}
+
+.price {
+  color: #1b283d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+/*------------------------------------------------------------------------------------*/
+/* FORCE FIXED FOOTER (na samom kraju fajla) */
+html, body { height: 100%; }
+
+body{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.page{ flex: 1; }
+
+.site-footer{
+  background:#05070d;
+  color:#aaa;
+  text-align:center;
+  padding:20px 10px;
+}
+/*------------------------------------------------------------------------------------*/
+/* ===== BACK BUTTON CARD ===== */
+.back-wrapper {
+  max-width: 1100px;
+  margin: 30px auto 20px;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.back-btn {
+  display: inline-block;
+  background: #A9A9A9;
+  color: #203450;
+  text-decoration: none;
+  font-weight: 600;
+
+  padding: 12px 20px;
+  border-radius: 12px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border: 1px solid #e6edf7;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(30,144,255,0.15);
+}
+
+.back-wrapper {
+  max-width: none;
+  padding-left: 20px;
+}
+/*------------------------------------------------------------------------------------*/
+/* ===== O NAMA – POSEBNA STRANICA ===== */
+.about-page {
+  background: #0b0f1a;
+  color: #eaeaea;
+  padding: 60px 20px 100px;
+}
+
+.about-page .section-title {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about-page .section-title h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #cfd8ff;
+}
+
+.about-page .section-title span {
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  flex: 1;
+}
+
+.about-page .about-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+}
+
+.about-page .about-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(30,144,255,0.18);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.about-page .about-card h3 {
+  color: #ffb347;
+  margin-bottom: 10px;
+}
+
+.about-page .about-card p {
+  color: #cfd8ff;
+  margin-bottom: 10px;
+}
+
+.about-page .about-info {
+  display: grid;
+  gap: 10px;
+}
+
+.about-page .about-info .label {
+  color: #9bb8ff;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .about-page .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/*------------------------------------------------------------------------------------*/
+/* OGLASI */
+#ad { }
+
+.ad-card{
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #e6edf7;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+.ad-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 160px;
+}
+
+.ad-body{ padding: 16px; }
+
+.ad-top{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.ad-title{ margin: 0; color: #244c7a; font-size: 18px; }
+.ad-price{ font-weight: 800; color: #1e90ff; white-space: nowrap; }
+
+.ad-meta{ margin: 8px 0 10px; }
+.ad-badge{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f5f7fb;
+  border: 1px solid #e6edf7;
+  color: #2b3a55;
+}
+
+.ad-desc{ margin: 0 0 10px; color: #2b3a55; }
+
+.ad-spec{
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: #2b3a55;
+}
+
+.ad-contact{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ad-contact a{
+  color: #244c7a;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 700px){
+  .ad-card{ grid-template-columns: 1fr; }
+  .ad-img{ min-height: 200px; }
+}
+/*------------------------------------------------------------------------------------*/

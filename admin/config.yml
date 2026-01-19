@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: USERNAME/REPO
+  branch: main
+  base_url: https://TVOJ-PROXY-DOMAIN   # npr. https://decap-auth.tvojdomen.com
+
+media_folder: "images/oglasi"
+public_folder: "/images/oglasi"
+
+collections:
+  - name: "oglasi"
+    label: "Oglasi"
+    folder: "oglasi"
+    create: true
+    slug: "{{kategorija}}-{{slug}}-{{year}}{{month}}{{day}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Kategorija", name: "kategorija", widget: "select", options: ["racunari","laptopi","monitori","toneri"] }
+      - { label: "Naziv", name: "naziv", widget: "string" }
+      - { label: "Cijena", name: "cijena", widget: "string", required: false }
+      - { label: "Stanje", name: "stanje", widget: "select", options: ["Novo","Polovno"], required: false }
+      - { label: "Opis", name: "opis", widget: "text", required: false }
+      - { label: "Specifikacije", name: "spec", widget: "list", required: false }
+      - label: "Slike"
+        name: "slike"
+        widget: "list"
+        field: { label: "Slika", name: "image", widget: "image" }
+        required: false
