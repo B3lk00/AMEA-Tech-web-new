@@ -139,6 +139,8 @@
 
   async function create() {
     const key = $("key").value.trim();
+    console.log("KEY (input) =", JSON.stringify(key));
+    console.log("Sending to:", API_BASE + "/api/oglasi");
     if (!key) return setStatus("Unesi ADMIN_KEY.");
 
     const specLines = $("spec").value.split("\n").map(s => s.trim()).filter(Boolean);
