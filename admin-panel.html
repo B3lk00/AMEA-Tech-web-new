@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Admin panel | Oglasi</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260120">
   <style>
     .admin-wrap{max-width:1100px;margin:40px auto;padding:0 20px}
     .admin-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,.08)}
@@ -13,7 +13,7 @@
     label{font-weight:600;font-size:14px}
     input,select,textarea{width:100%;padding:10px 12px;border:1px solid #d6deee;border-radius:10px}
     textarea{min-height:110px}
-    .row{display:flex;gap:10px;align-items:center}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
     .btn-primary{background:#1e90ff;color:#fff}
     .btn-danger{background:#b00020;color:#fff}
@@ -26,6 +26,10 @@
 <body>
   <div class="admin-wrap">
     <h1 style="color:#fff;margin-bottom:14px">Admin panel – Oglasi</h1>
+
+    <div class="admin-card">
+      <div class="grid">
+        <div class="grid-1">
 
           <div class="grid">
             <div>
@@ -78,17 +82,19 @@
             <textarea id="spec" placeholder="Ryzen 5 5600&#10;16GB RAM&#10;1TB SSD"></textarea>
           </div>
 
+          <div>
+            <label>Slike (može više)</label>
+            <input id="slike" type="file" accept="image/*" multiple>
+            <p class="muted" style="margin:6px 0 0">Prvo se uploaduju slike, pa se URL-ovi snime u oglas.</p>
+          </div>
+
           <div class="row">
             <button class="btn btn-primary" id="btnObjavi">Objavi oglas</button>
             <button class="btn" id="btnReload">Osvježi listu</button>
             <span id="status" class="muted"></span>
           </div>
-        </div>
 
-  <div>
-  <label>Slike (može više)</label>
-  <input id="slike" type="file" accept="image/*" multiple>
-</div>
+        </div>
 
         <div>
           <h3>Postojeći oglasi</h3>
@@ -98,15 +104,26 @@
     </div>
   </div>
 
-
-  
 <script>
-  // UPISI OVDE URL SVOG WORKERA:
-  const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev"; // npr. https://amea-oglasi-api.belmins1617.workers.dev
+  const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev";
 
   const $ = (id) => document.getElementById(id);
-
   function setStatus(msg){ $("status").textContent = msg || ""; }
+
+  async function uploadOne(file) {
+    const form = new FormData();
+    form.append("file", file);
+
+    const res = await fetch(API_BASE + "/api/upload", {
+      method: "POST",
+      body: form,
+    });
+
+    if (!res.ok) throw new Error(await res.text());
+
+    const data = await res.json();
+    return data.url;
+  }
 
   async function load() {
     setStatus("Učitavam...");
@@ -124,9 +141,10 @@
     list.innerHTML = items.map(o => `
       <div class="item">
         <div>
-          <div><b>${o.naziv}</b> <span class="muted">(${o.kategorija})</span></div>
+          <div><b>${o.naziv || ""}</b> <span class="muted">(${o.kategorija || ""})</span></div>
           <div class="muted">${o.cijena || ""} ${o.stanje ? "• " + o.stanje : ""}</div>
-          <div class="muted">id: ${o.id}</div>
+          <div class="muted">id: ${o.id || ""}</div>
+          <div class="muted">${(o.slike||[]).length ? "📷 Slika: " + (o.slike||[]).length : ""}</div>
         </div>
         <button class="btn btn-danger" onclick="del('${o.id}')">Obriši</button>
       </div>
@@ -135,82 +153,65 @@
     setStatus("");
   }
 
-async function create() {
-  const payload = {
-    kategorija: $("kategorija").value,
-    naziv: $("naziv").value.trim(),
-    cijena: $("cijena").value.trim(),
-    stanje: $("stanje").value,
-    opis: $("opis").value.trim(),
-    spec: $("spec").value.split("\n").map(s => s.trim()).filter(Boolean),
-    slike: [],
-    kontakt: {
-      telefon: $("telefon").value.trim(),
-      email: $("email").value.trim(),
+  async function create() {
+    try {
+      const files = Array.from($("slike").files || []);
+      let uploadedUrls = [];
+
+      if (files.length) {
+        setStatus("Upload slika...");
+        for (const f of files) {
+          const url = await uploadOne(f);
+          uploadedUrls.push(url);
+        }
+      }
+
+      const payload = {
+        kategorija: $("kategorija").value,
+        naziv: $("naziv").value.trim(),
+        cijena: $("cijena").value.trim(),
+        stanje: $("stanje").value,
+        opis: $("opis").value.trim(),
+        spec: $("spec").value.split("\n").map(s => s.trim()).filter(Boolean),
+        slike: uploadedUrls, // ✅ OVO JE KLJUČNO
+        kontakt: {
+          telefon: $("telefon").value.trim(),
+          email: $("email").value.trim(),
+        }
+      };
+
+      if (!payload.naziv) return setStatus("Naziv je obavezan.");
+
+      setStatus("Objavljujem...");
+      const res = await fetch(API_BASE + "/api/oglasi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const t = await res.text();
+        return setStatus("Greška: " + t);
+      }
+
+      $("naziv").value = "";
+      $("cijena").value = "";
+      $("opis").value = "";
+      $("spec").value = "";
+      $("slike").value = "";
+      setStatus("Objavljeno ✅");
+      await load();
+    } catch (e) {
+      setStatus("Greška: " + e.message);
+      console.error(e);
     }
-  };
-
-  const files = Array.from($("slike").files || []);
-let uploadedUrls = [];
-
-if (files.length) {
-  setStatus("Upload slika...");
-  for (const f of files) {
-    const url = await uploadOne(f);
-    uploadedUrls.push(url);
   }
-}
-
-
-  if (!payload.naziv) return setStatus("Naziv je obavezan.");
-
-  slike: uploadedUrls,
-  
-  setStatus("Objavljujem...");
-
-  const res = await fetch(API_BASE + "/api/oglasi", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  if (!res.ok) {
-    const t = await res.text();
-    return setStatus("Greška: " + t);
-  }
-
-  $("naziv").value = "";
-  $("cijena").value = "";
-  $("opis").value = "";
-  $("spec").value = "";
-  setStatus("Objavljeno ✅");
-  await load();
-}
-
-  async function uploadOne(file) {
-  const form = new FormData();
-  form.append("file", file);
-
-  const res = await fetch(API_BASE + "/api/upload", {
-    method: "POST",
-    body: form,
-  });
-
-  if (!res.ok) {
-    throw new Error(await res.text());
-  }
-
-  const data = await res.json();
-  return data.url;
-}
-
-
 
   async function del(id) {
     setStatus("Brišem...");
-const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
-  method: "DELETE",
-});
+    const res = await fetch(API_BASE + "/api/oglasi?id=" + encodeURIComponent(id), {
+      method: "DELETE",
+    });
 
     if (!res.ok) {
       const t = await res.text();
