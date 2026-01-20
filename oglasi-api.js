@@ -17,7 +17,11 @@ function renderOglasi(items, container) {
     <article class="ad-card">
       <div class="ad-body">
         <div class="ad-top">
-          <h3 class="ad-title">${o.naziv || ""}</h3>
+          <h3 class="ad-title">
+  <a href="/oglas.html?id=${encodeURIComponent(o.id)}" style="color:inherit;text-decoration:underline">
+    ${o.naziv || ""}
+  </a>
+</h3>
           <div class="ad-price">${o.cijena || ""}</div>
         </div>
         <div class="ad-meta">
