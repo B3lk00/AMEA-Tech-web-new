@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oglas | AMEA Tech</title>
+  <link rel="stylesheet" href="/style.css?v=20260120">
+  <style>
+    .wrap{max-width:1100px;margin:30px auto;padding:0 16px}
+    .card{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:18px}
+    .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .price{font-weight:800;font-size:18px}
+    .muted{opacity:.75}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid #e1e7f2;background:#f6f8ff}
+    .spec{margin:10px 0 0 18px}
+    .contact a{display:inline-block;margin-right:10px;text-decoration:underline;color:inherit}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:160px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="javascript:history.back()" class="muted">← Nazad</a>
+    <div id="content" class="card" style="margin-top:12px">Učitavam...</div>
+  </div>
+
+<script>
+  const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev";
+
+  function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));}
+  function q(name){ return new URLSearchParams(location.search).get(name); }
+
+  async function loadOglas() {
+    const id = q("id");
+    const el = document.getElementById("content");
+    if (!id) { el.innerHTML = "Nedostaje id oglasa."; return; }
+
+    const res = await fetch(API_BASE + "/api/oglasi", { cache: "no-store" });
+    const data = await res.json();
+    const items = data.items || [];
+    const o = items.find(x => x.id === id);
+
+    if (!o) { el.innerHTML = "Oglas nije pronađen."; return; }
+
+    const imgs = Array.isArray(o.slike) ? o.slike : [];
+
+    el.innerHTML = `
+      <div class="top">
+        <div>
+          <h1 style="margin:0">${esc(o.naziv)}</h1>
+          <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
+        </div>
+        <div class="price">${esc(o.cijena || "")}</div>
+      </div>
+
+      ${imgs.length ? `
+        <div style="margin-top:14px" class="gallery">
+          ${imgs.map(u => `<img src="${esc(u)}" alt="">`).join("")}
+        </div>` : ""
+      }
+
+      <div class="grid" style="margin-top:14px">
+        <div>
+          ${o.opis ? `<h3>Opis</h3><p class="muted" style="margin-top:6px">${esc(o.opis)}</p>` : ""}
+          ${(o.spec||[]).length ? `<h3>Specifikacije</h3><ul class="spec muted">${(o.spec||[]).map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+        </div>
+        <div>
+          <h3>Kontakt</h3>
+          <div class="contact muted" style="margin-top:6px">
+            ${o.kontakt?.telefon ? `<a href="tel:${esc(o.kontakt.telefon)}">📞 ${esc(o.kontakt.telefon)}</a>` : ""}
+            ${o.kontakt?.email ? `<a href="mailto:${esc(o.kontakt.email)}">✉️ ${esc(o.kontakt.email)}</a>` : ""}
+          </div>
+          <div class="muted" style="margin-top:10px;font-size:12px">ID: ${esc(o.id)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  loadOglas();
+</script>
+</body>
+</html>
