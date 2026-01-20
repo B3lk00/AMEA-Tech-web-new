@@ -172,6 +172,24 @@ async function create() {
   await load();
 }
 
+  async function uploadOne(file) {
+  const form = new FormData();
+  form.append("file", file);
+
+  const res = await fetch(API_BASE + "/api/upload", {
+    method: "POST",
+    body: form,
+  });
+
+  if (!res.ok) {
+    throw new Error(await res.text());
+  }
+
+  const data = await res.json();
+  return data.url;
+}
+
+
 
   async function del(id) {
     setStatus("Brišem...");
