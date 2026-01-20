@@ -58,16 +58,7 @@
       .map(safeImgUrl)
       .filter(Boolean);
 
-    el.innerHTML = `
-      <div class="top">
-        <div>
-          <h1 style="margin:0">${esc(o.naziv)}</h1>
-          <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
-        </div>
-        <div class="price">${esc(o.cijena || "")}</div>
-      </div>
-
-      // Lightbox click
+        // Lightbox click
 const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lightboxImg");
 
@@ -83,6 +74,16 @@ lb.addEventListener("click", () => {
   lb.style.display = "none";
   lbImg.src = "";
 });
+
+
+    el.innerHTML = `
+      <div class="top">
+        <div>
+          <h1 style="margin:0">${esc(o.naziv)}</h1>
+          <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
+        </div>
+        <div class="price">${esc(o.cijena || "")}</div>
+      </div>
 
 
       ${imgs.length ? `
