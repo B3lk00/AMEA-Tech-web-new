@@ -28,8 +28,19 @@
 <script>
   const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev";
 
-  function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));}
+  function esc(s){
+    return String(s ?? "").replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[m]));
+  }
   function q(name){ return new URLSearchParams(location.search).get(name); }
+
+  function safeImgUrl(u){
+    const s = String(u || "").trim();
+    // dozvoli samo http/https URL (da se ne ubaci nešto čudno)
+    if (s.startsWith("http://") || s.startsWith("https://")) return s;
+    return "";
+  }
 
   async function loadOglas() {
     const id = q("id");
@@ -43,7 +54,9 @@
 
     if (!o) { el.innerHTML = "Oglas nije pronađen."; return; }
 
-    const imgs = Array.isArray(o.slike) ? o.slike : [];
+    const imgs = (Array.isArray(o.slike) ? o.slike : [])
+      .map(safeImgUrl)
+      .filter(Boolean);
 
     el.innerHTML = `
       <div class="top">
@@ -56,8 +69,8 @@
 
       ${imgs.length ? `
         <div style="margin-top:14px" class="gallery">
-          ${imgs.map(u => `<img src="${esc(u)}" alt="">`).join("")}
-        </div>` : ""
+          ${imgs.map(u => `<img src="${u}" alt="">`).join("")}
+        </div>` : `<p class="muted" style="margin-top:14px">Nema slika za ovaj oglas.</p>`
       }
 
       <div class="grid" style="margin-top:14px">
