@@ -149,8 +149,22 @@ async function create() {
     }
   };
 
+  const files = Array.from($("slike").files || []);
+let uploadedUrls = [];
+
+if (files.length) {
+  setStatus("Upload slika...");
+  for (const f of files) {
+    const url = await uploadOne(f);
+    uploadedUrls.push(url);
+  }
+}
+
+
   if (!payload.naziv) return setStatus("Naziv je obavezan.");
 
+  slike: uploadedUrls,
+  
   setStatus("Objavljujem...");
 
   const res = await fetch(API_BASE + "/api/oglasi", {
