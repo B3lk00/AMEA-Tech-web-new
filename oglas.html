@@ -67,11 +67,42 @@
         <div class="price">${esc(o.cijena || "")}</div>
       </div>
 
+      // Lightbox click
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lightboxImg");
+
+document.querySelectorAll(".gimg").forEach(img => {
+  img.style.cursor = "zoom-in";
+  img.addEventListener("click", () => {
+    lbImg.src = img.dataset.full;
+    lb.style.display = "flex";
+  });
+});
+
+lb.addEventListener("click", () => {
+  lb.style.display = "none";
+  lbImg.src = "";
+});
+
+
       ${imgs.length ? `
-        <div style="margin-top:14px" class="gallery">
-          ${imgs.map(u => `<img src="${u}" alt="">`).join("")}
-        </div>` : `<p class="muted" style="margin-top:14px">Nema slika za ovaj oglas.</p>`
-      }
+  <div style="margin-top:14px" class="gallery">
+    ${imgs.map(u => `
+      <img src="${u}" alt="" class="gimg" data-full="${u}">
+    `).join("")}
+  </div>
+
+  <div id="lightbox" style="
+    display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+    align-items:center; justify-content:center; padding:18px; z-index:999999;
+  ">
+    <img id="lightboxImg" src="" alt="" style="
+      max-width:min(1100px, 95vw); max-height:90vh; border-radius:14px;
+      background:#fff;
+    ">
+  </div>
+` : `<p class="muted" style="margin-top:14px">Nema slika za ovaj oglas.</p>`}
+
 
       <div class="grid" style="margin-top:14px">
         <div>
