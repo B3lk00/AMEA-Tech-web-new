@@ -125,7 +125,7 @@ footer {
   height: 100px;
 }
 
-//--------------------------------
+/*--------------------------------*/
 /* CONTACT */
 .contact {
   padding: 80px 20px;
@@ -235,7 +235,7 @@ footer {
     margin-bottom: 6px;
   }
 }
-//-----------------------------------
+/*-----------------------------------*/
 
 /* Ikonice usluga */
 
@@ -714,5 +714,10 @@ body{
   border-radius: 12px !important;
   padding: 16px !important;
   margin: 12px 0 !important;
+}
+/*------------------------------------------------------------------------------------*/
+/* FIX: ako ad-card nema .ad-img, nemoj grid 2 kolone */
+#oglasi .ad-card{
+  display: block !important;
 }
 /*------------------------------------------------------------------------------------*/
