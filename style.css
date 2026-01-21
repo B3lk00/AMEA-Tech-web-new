@@ -80,11 +80,11 @@ body {
 }
 
 
-/* SERVICES */
+/* SERVICES – DARK FIX */
 .services {
   padding: 80px 20px;
-  background: #f5f7fb;
-  color: #111;
+  background: transparent;
+  color: #eaeaea;
 }
 
 .services h2 {
@@ -239,12 +239,12 @@ footer {
 
 /* Ikonice usluga */
 
-/* SERVICES STRIP (kao na slici) */
+/* SERVICES STRIP – DARK FIX */
 .services-strip {
-  background: #f5f7fb;
-  padding: 15px 16px 45px; /* manji top padding */
-  margin-top: -10px;      /* PODIŽE SEKCIJU GORE */
-  color: #111;
+  background: transparent;
+  padding: 15px 16px 45px;
+  margin-top: -10px;
+  color: #eaeaea;
 }
 
 .section-title {
@@ -332,9 +332,9 @@ footer {
 }
 
 /*Prodaja stvari*/
-/* PRODUCT PREVIEW */
+/* PRODUCT PREVIEW – DARK FIX */
 .products-preview {
-  background: #f5f7fb;
+  background: transparent;
   padding: 90px 20px 120px;
   margin-bottom: 120px;
 }
