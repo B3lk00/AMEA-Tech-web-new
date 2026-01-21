@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Računari | AMEA Tech</title>
 
-  <!-- samo jednom i sa verzijom -->
-  <link rel="stylesheet" href="/style.css?v=20260121-1">
+  <!-- RELATIVNO (bez /) + cache buster -->
+  <link rel="stylesheet" href="./style.css?v=20260121-2">
 </head>
 <body>
 
 <header class="simple-header">
   <h1>Računari</h1>
   <div class="back-wrapper">
-    <a href="index.html" class="back-btn">← Nazad</a>
+    <a href="./index.html" class="back-btn">← Nazad</a>
   </div>
 </header>
 
@@ -23,10 +23,11 @@
   <p>© 2026 AMEA Tech d.o.o.</p>
 </footer>
 
-<!-- JS na dnu je OK -->
-<script src="/oglasi-api.js?v=20260121-1"></script>
+<!-- RELATIVNO (bez /) + cache buster -->
+<script src="./oglasi-api.js?v=20260121-2"></script>
 <script>
-  window.addEventListener("DOMContentLoaded", () => initOglasi("racunari"));
+  // samo pozovi odmah (skripta je na dnu, DOM već postoji)
+  initOglasi("racunari");
 </script>
 
 </body>
