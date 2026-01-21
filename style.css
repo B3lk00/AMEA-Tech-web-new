@@ -693,29 +693,7 @@ body{
   .ad-img{ min-height: 200px; }
 }
 /*------------------------------------------------------------------------------------*/
-/* === OGLASI (dark theme friendly) === */
-#oglasi{
-  display:block;
-  min-height:20px;
-}
 
-#oglasi a { color: inherit; }
-
-#oglasi .ad-card{
-  display:block;                 /* da ne zavisi od grid layouta */
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(30,144,255,0.18);
-  border-radius: 14px;
-  padding: 16px;
-  margin: 12px 0;
-  color: #eaeaea;
-}
-
-#oglasi .ad-title{ color:#cfd8ff; }
-#oglasi .ad-price{ color:#ffb347; }
-#oglasi .ad-desc, #oglasi .ad-spec{ color:#cfd8ff; opacity:.9; }
-#oglasi .ad-badge{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color:#eaeaea; }
-#oglasi .ad-contact a{ color:#ffb347; }
 /*------------------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------------*/
