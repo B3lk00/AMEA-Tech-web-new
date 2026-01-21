@@ -50,7 +50,7 @@ function renderOglasi(items, container) {
 }
 
 async function initOglasi(kategorija) {
-  const container = document.getElementById("oglasi");
+  const container = document.getElementById("oglasiMount");
   if (!container) return;
 
   container.innerHTML = "Učitavam...";
