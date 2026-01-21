@@ -11,8 +11,12 @@ async function ucitajOglase(kategorija) {
 }
 
 function esc(s) {
-  return String(s ?? "").replace(/[&<>"']/g, m => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  return String(s ?? "").replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
   }[m]));
 }
 
@@ -22,16 +26,14 @@ function renderOglasi(items, container) {
     return;
   }
 
-  container.innerHTML = items.map(o => {
+  container.innerHTML = items.map((o) => {
     const href = `oglas.html?id=${encodeURIComponent(o.id)}`;
-
-    // ako ima slika, uzmi prvu kao thumbnail
     const thumb = (Array.isArray(o.slike) && o.slike.length) ? o.slike[0] : "";
 
     return `
-      <a href="${href}" style="text-decoration:none;color:inherit;display:block">
+      <a href="${href}" class="ad-link" style="text-decoration:none;color:inherit;display:block">
         <article class="ad-card">
-          ${thumb ? `<img src="${esc(thumb)}" alt="" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin-bottom:10px">` : ""}
+          ${thumb ? `<img class="ad-img" src="${esc(thumb)}" alt="">` : ""}
           <div class="ad-body">
             <div class="ad-top">
               <h3 class="ad-title">${esc(o.naziv || "")}</h3>
@@ -50,7 +52,7 @@ function renderOglasi(items, container) {
 }
 
 async function initOglasi(kategorija) {
-  const container = document.getElementById("oglasiMount");
+  const container = document.getElementById("oglasi"); // <-- standard
   if (!container) return;
 
   container.innerHTML = "Učitavam...";
