@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oglas | AMEA Tech</title>
-  <link rel="stylesheet" href="/style.css?v=20260120">
+  <link rel="stylesheet" href="style.css?v=20260121-2">
   <style>
     .wrap{max-width:1100px;margin:30px auto;padding:0 16px}
     .card{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:18px}
@@ -12,17 +12,23 @@
     .price{font-weight:800;font-size:18px}
     .muted{opacity:.75}
     .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid #e1e7f2;background:#f6f8ff;cursor:zoom-in}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid #e1e7f2;background:#f6f8ff}
     .spec{margin:10px 0 0 18px}
     .contact a{display:inline-block;margin-right:10px;text-decoration:underline;color:inherit}
     @media(max-width:900px){.grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:160px}}
+    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:18px;z-index:999999}
+    #lightbox img{max-width:min(1100px,95vw);max-height:90vh;border-radius:14px;background:#fff}
   </style>
 </head>
 <body>
   <div class="wrap">
     <a href="javascript:history.back()" class="muted">← Nazad</a>
     <div id="content" class="card" style="margin-top:12px">Učitavam...</div>
+  </div>
+
+  <div id="lightbox">
+    <img id="lightboxImg" src="" alt="">
   </div>
 
 <script>
@@ -41,29 +47,6 @@
     return "";
   }
 
-  function initLightbox() {
-    const lb = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lightboxImg");
-    if (!lb || !lbImg) return;
-
-    document.querySelectorAll(".gimg").forEach(img => {
-      img.addEventListener("click", () => {
-        lbImg.src = img.dataset.full;
-        lb.style.display = "flex";
-      });
-    });
-
-    const close = () => {
-      lb.style.display = "none";
-      lbImg.src = "";
-    };
-
-    lb.addEventListener("click", close);
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
-    });
-  }
-
   async function loadOglas() {
     const id = q("id");
     const el = document.getElementById("content");
@@ -76,9 +59,7 @@
 
     if (!o) { el.innerHTML = "Oglas nije pronađen."; return; }
 
-    const imgs = (Array.isArray(o.slike) ? o.slike : [])
-      .map(safeImgUrl)
-      .filter(Boolean);
+    const imgs = (Array.isArray(o.slike) ? o.slike : []).map(safeImgUrl).filter(Boolean);
 
     el.innerHTML = `
       <div class="top">
@@ -90,18 +71,8 @@
       </div>
 
       ${imgs.length ? `
-        <div style="margin-top:14px" class="gallery">
-          ${imgs.map(u => `<img src="${u}" alt="" class="gimg" data-full="${u}">`).join("")}
-        </div>
-
-        <div id="lightbox" style="
-          display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
-          align-items:center; justify-content:center; padding:18px; z-index:999999;
-        ">
-          <img id="lightboxImg" src="" alt="" style="
-            max-width:min(1100px, 95vw); max-height:90vh; border-radius:14px;
-            background:#fff;
-          ">
+        <div class="gallery">
+          ${imgs.map(u => `<img src="${esc(u)}" alt="" class="gimg" data-full="${esc(u)}" style="cursor:zoom-in">`).join("")}
         </div>
       ` : `<p class="muted" style="margin-top:14px">Nema slika za ovaj oglas.</p>`}
 
@@ -121,8 +92,21 @@
       </div>
     `;
 
-    // ✅ tek nakon što je HTML ubačen
-    initLightbox();
+    // Lightbox AFTER render
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightboxImg");
+
+    document.querySelectorAll(".gimg").forEach(img => {
+      img.addEventListener("click", () => {
+        lbImg.src = img.dataset.full;
+        lb.style.display = "flex";
+      });
+    });
+
+    lb.addEventListener("click", () => {
+      lb.style.display = "none";
+      lbImg.src = "";
+    });
   }
 
   loadOglas();
