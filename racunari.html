@@ -4,27 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Računari | AMEA Tech</title>
-  <link rel="stylesheet" href="./style.css?v=20260121-20">
-  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="style.css?v=20260121-2">
 </head>
 <body>
 
 <header class="simple-header">
   <h1>Računari</h1>
   <div class="back-wrapper">
-    <a href="./index.html" class="back-btn">← Nazad</a>
+    <a href="index.html" class="back-btn">← Nazad</a>
   </div>
 </header>
 
+<!-- SAMO JEDAN #oglasi -->
 <div class="product-list" id="oglasi"></div>
 
 <footer class="site-footer">
   <p>© 2026 AMEA Tech d.o.o.</p>
 </footer>
 
-<script src="./oglasi-api.js?v=20260121-20"></script>
+<!-- BITNO: samo ovaj JS, nema oglasi-loader.js -->
+<script src="oglasi-api.js?v=20260121-2"></script>
 <script>
-  initOglasi("racunari");
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.initOglasi) window.initOglasi("racunari");
+  });
 </script>
 
 </body>
