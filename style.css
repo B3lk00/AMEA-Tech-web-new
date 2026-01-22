@@ -426,6 +426,89 @@ body {
   .ad-img{ height: 180px; }
 }
 /*------------------------------------------------------------------------------------*/
+/* =========================================================
+   RESTORE STARI IZGLED (LOGO, KRUGOVI, SAT PANEL)
+   ========================================================= */
+
+/* ===== LOGO – VRATI STARU VELIČINU ===== */
+.logo img{
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+/* ===== KRUG / RING OKO KARTICA (O NAMA, IKONICE) ===== */
+.service-icon,
+.product-cat{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(30,144,255,0.35);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+/* krug oko ikonice */
+.service-icon img{
+  padding: 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(30,144,255,0.45);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ===== TECH CLOCK PANEL – VRATI KAO PRIJE ===== */
+.tech-clock-panel {
+  margin: 28px auto 34px;
+  padding: 36px 60px 34px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+
+  border: 1px solid rgba(120, 150, 255, 0.35);
+  border-radius: 18px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  backdrop-filter: blur(8px);
+}
+
+.tech-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tech-icon {
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+.tech-time {
+  font-size: 54px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #dbe3ff;
+}
+
+.tech-date {
+  font-size: 19px;
+  letter-spacing: 1.6px;
+  color: #a9b6e8;
+}
+
+/* FADE IN (ako se koristi) */
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /*------------------------------------------------------------------------------------*/
 
