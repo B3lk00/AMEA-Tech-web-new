@@ -511,5 +511,57 @@ body {
 }
 
 /*------------------------------------------------------------------------------------*/
+/* =========================================================
+   FIX: Vrati "Naše usluge" i "Prodaja stvari" kao prije
+        + Poseban stil samo za "O nama"
+   (ZALIJEPITI NA SAM KRAJ style.css)
+   ========================================================= */
+
+/* --- VRATI NA STARI LOOK (bez ringa) --- */
+.service-icon{
+  background: #fff !important;
+  border: 1px solid #e6edf7 !important;
+  border-radius: 10px !important;
+  color: #111 !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+}
+
+/* tekst u karticama opet kao prije */
+.service-icon p,
+.service-icon .title{
+  color: #2b3a55 !important;
+}
+.service-icon .desc{
+  color: #6b7a99 !important;
+}
+
+/* IKONICE: ukloni krug oko slike (vrati normalno) */
+.service-icon img{
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+/* prodaja opreme / product kategorije opet kao prije */
+.product-cat{
+  background: #fff !important;
+  border: 1px solid #e1e7f2 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05) !important;
+}
+
+/* --- SAMO "O NAMA" poseban ring --- */
+.service-icon.about-ring{
+  border: 2px solid rgba(30,144,255,0.55) !important;
+  box-shadow: 0 16px 38px rgba(30,144,255,0.18) !important;
+  transform: translateY(0);
+}
+
+/* (opciono) mali glow na hover samo za O nama */
+.service-icon.about-ring:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(30,144,255,0.25) !important;
+}
 
 /*------------------------------------------------------------------------------------*/
