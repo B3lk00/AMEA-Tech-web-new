@@ -30,6 +30,8 @@ function renderOglasi(items, container) {
     const href = `oglas.html?id=${encodeURIComponent(o.id)}`;
     const thumb = (Array.isArray(o.slike) && o.slike.length) ? o.slike[0] : "";
 
+    const qty = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
+
     return `
       <a href="${href}" class="ad-link" style="text-decoration:none;color:inherit;display:block">
         <article class="ad-card">
@@ -39,11 +41,12 @@ function renderOglasi(items, container) {
               <h3 class="ad-title">${esc(o.naziv || "")}</h3>
               <div class="ad-price">${esc(o.cijena || "")}</div>
             </div>
+
             <div class="ad-meta">
               ${o.stanje ? `<span class="ad-badge">${esc(o.stanje)}</span>` : ""}
+              ${qty !== null ? `<span class="ad-badge">Na stanju: ${esc(qty)}</span>` : ""}
             </div>
-             ${Number.isFinite(o.kolicina) ? `<div class="ad-stock">Na stanju: ${esc(o.kolicina)}</div>` : ""}
-            </div>
+
             ${o.opis ? `<p class="ad-desc">${esc(o.opis)}</p>` : ""}
             ${(o.spec || []).length ? `<ul class="ad-spec">${o.spec.slice(0,4).map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : ""}
           </div>
@@ -54,7 +57,7 @@ function renderOglasi(items, container) {
 }
 
 async function initOglasi(kategorija) {
-  const container = document.getElementById("oglasi"); // <-- standard
+  const container = document.getElementById("oglasi");
   if (!container) return;
 
   container.innerHTML = "Učitavam...";
