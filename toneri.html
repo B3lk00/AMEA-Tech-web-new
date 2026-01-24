@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toneri | AMEA Tech</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260122-3">
 </head>
 <body>
 
 <header class="simple-header">
-  <h1>Toneri & Kertridži</h1>
-   <div class="back-wrapper">
-  <a href="index.html" class="back-btn">← Nazad</a>
-</div>
+  <h1>Toneri</h1>
+  <div class="back-wrapper">
+    <a href="index.html" class="back-btn">← Nazad</a>
+  </div>
 </header>
 
-<section class="product-list">
-  <div class="product-card">
-    <h3>HP 85A</h3>
-    <p class="price">45 KM</p>
-    <ul>
-      <li>Laser toner</li>
-      <li>Crna boja</li>
-      <li>Original / zamjenski</li>
-    </ul>
-  </div>
+<main class="page">
+  <div class="product-list" id="oglasi"></div>
+</main>
 
-  <div class="product-card">
-    <h3>Canon PG-545</h3>
-    <p class="price">35 KM</p>
-    <ul>
-      <li>Ink cartridge</li>
-      <li>Crna boja</li>
-      <li>Original</li>
-    </ul>
-  </div>
-</section>
+<footer class="site-footer">
+  <p>© 2026 AMEA Tech d.o.o.</p>
+</footer>
+
+<script src="oglasi-api.js?v=20260122-3"></script>
+<script>
+  initOglasi("toneri");
+</script>
 
 </body>
 </html>
