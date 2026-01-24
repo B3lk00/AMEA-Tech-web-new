@@ -42,6 +42,8 @@ function renderOglasi(items, container) {
             <div class="ad-meta">
               ${o.stanje ? `<span class="ad-badge">${esc(o.stanje)}</span>` : ""}
             </div>
+             ${Number.isFinite(o.kolicina) ? `<div class="ad-stock">Na stanju: ${esc(o.kolicina)}</div>` : ""}
+            </div>
             ${o.opis ? `<p class="ad-desc">${esc(o.opis)}</p>` : ""}
             ${(o.spec || []).length ? `<ul class="ad-spec">${o.spec.slice(0,4).map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : ""}
           </div>
