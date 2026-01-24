@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laptopi | AMEA Tech</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260122-3">
 </head>
 <body>
 
 <header class="simple-header">
   <h1>Laptopi</h1>
-   <div class="back-wrapper">
-  <a href="index.html" class="back-btn">← Nazad</a>
-</div>
+  <div class="back-wrapper">
+    <a href="index.html" class="back-btn">← Nazad</a>
+  </div>
 </header>
 
-<section class="product-list">
-  <div class="product-card">
-    <h3>Business Laptop</h3>
-    <p class="price">1.199 KM</p>
-    <ul>
-      <li>Intel i5</li>
-      <li>16 GB RAM</li>
-      <li>512 GB SSD</li>
-      <li>15.6" FHD</li>
-    </ul>
-  </div>
+<main class="page">
+  <div class="product-list" id="oglasi"></div>
+</main>
 
-  <div class="product-card">
-    <h3>Gaming Laptop</h3>
-    <p class="price">2.299 KM</p>
-    <ul>
-      <li>Ryzen 7</li>
-      <li>32 GB RAM</li>
-      <li>1 TB SSD</li>
-      <li>RTX 4070</li>
-    </ul>
-  </div>
-</section>
+<footer class="site-footer">
+  <p>© 2026 AMEA Tech d.o.o.</p>
+</footer>
+
+<script src="oglasi-api.js?v=20260122-3"></script>
+<script>
+  initOglasi("laptopi");
+</script>
 
 </body>
 </html>
