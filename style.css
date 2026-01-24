@@ -672,6 +672,12 @@ body{
   color: #ffb347;
 }
 
+.ad-stock{
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: .9;
+}
+
 .ad-desc{
   font-size: 13px;
   margin: 6px 0;
