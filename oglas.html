@@ -5,61 +5,120 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oglas | AMEA Tech</title>
   <link rel="stylesheet" href="style.css?v=20260121-2">
-  <style>
-    .wrap{max-width:1100px;margin:30px auto;padding:0 16px}
-    .card{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:18px}
-    .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
-    .price{font-weight:800;font-size:18px}
-    .muted{opacity:.75}
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid #e1e7f2;background:#f6f8ff;cursor:zoom-in}
-    .spec{margin:10px 0 0 18px}
-    .contact a{display:inline-block;margin-right:10px;text-decoration:underline;color:inherit}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:160px}}
+ <style>
+  .wrap{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 16px
+  }
 
-    /* Lightbox */
-    #lightbox{
-      display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);
-      align-items:center;justify-content:center;padding:18px;z-index:999999;
-    }
-    #lightbox .lb-inner{
-      position:relative;
-      max-width:min(1100px, 96vw);
-      max-height:92vh;
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    #lightbox img{
-      max-width:100%;
-      max-height:92vh;
-      border-radius:14px;
-      background:#fff;
-    }
-    .lb-btn{
-      position:absolute; top:50%;
-      transform:translateY(-50%);
-      width:44px;height:44px;border-radius:999px;
-      border:0; cursor:pointer;
-      background:rgba(255,255,255,.16);
-      color:#fff;font-size:22px;font-weight:900;
-      display:flex;align-items:center;justify-content:center;
-      user-select:none;
-    }
-    .lb-btn:hover{background:rgba(255,255,255,.25)}
-    .lb-prev{left:10px}
-    .lb-next{right:10px}
-    .lb-close{
-      position:absolute; top:10px; right:10px;
-      width:44px;height:44px;border-radius:999px;
-      border:0; cursor:pointer;
-      background:rgba(255,255,255,.16);
-      color:#fff;font-size:22px;font-weight:900;
-      display:flex;align-items:center;justify-content:center;
-    }
-  </style>
+  /* GLAVNA KARTICA – DARK */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;
+    padding:18px;
+    color:#eaeaea;
+    box-shadow: 0 18px 55px rgba(0,0,0,.45);
+  }
+
+  .top{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start;
+    flex-wrap:wrap
+  }
+
+  h1{
+    color:#dbe3ff;
+  }
+
+  h3{
+    color:#9bb8ff;
+    margin-bottom:6px;
+  }
+
+  .price{
+    font-weight:800;
+    font-size:18px;
+    color:#ffb347;
+  }
+
+  .muted{
+    opacity:.75;
+    color:#a8b3cf;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:16px
+  }
+
+  /* GALERIJA */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:14px
+  }
+
+  .gallery img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(0,0,0,.35);
+    cursor:zoom-in;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+
+  .gallery img:hover{
+    transform:scale(1.03);
+    box-shadow:0 14px 35px rgba(30,144,255,.25);
+  }
+
+  .spec{
+    margin:10px 0 0 18px;
+    color:#cfd8ff;
+  }
+
+  .contact a{
+    display:inline-block;
+    margin-right:10px;
+    text-decoration:none;
+    font-weight:700;
+    color:#ffb347;
+  }
+
+  /* LIGHTBOX */
+  #lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:999999
+  }
+
+  #lightbox img{
+    max-width:min(1100px,95vw);
+    max-height:90vh;
+    border-radius:16px;
+    background:#000;
+    box-shadow:0 20px 60px rgba(0,0,0,.7);
+  }
+
+  @media(max-width:900px){
+    .grid{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .gallery img{height:160px}
+  }
+</style>
 </head>
 <body>
   <div class="wrap">
