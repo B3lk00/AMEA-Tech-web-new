@@ -144,9 +144,13 @@
 </head>
 <body>
 <div class="wrap">
-    <a href="javascript:history.back()" class="muted">← Nazad</a>
-    <div id="content" class="card" style="margin-top:12px">Učitavam...</div>
+  <div class="back-wrapper">
+    <a href="index.html" class="back-btn">← Nazad</a>
   </div>
+
+  <div id="content" class="card">Učitavam...</div>
+</div>
+
 
   <div id="lightbox">
     <div class="lb-inner" id="lbInner">
@@ -252,6 +256,18 @@
         </div>
       </div>
     `;
+
+/* Back kao na kategorijama - skroz lijevo */
+.back-wrapper{
+  max-width: none;
+  padding-left: 0;
+  margin: 0 0 12px 0;
+}
+
+/* da kartica ne “bježi” kad nema inline margin */
+#content{ margin-top: 0; }
+
+    
 
     // Bind lightbox AFTER render
     document.querySelectorAll(".gimg").forEach(img => {
