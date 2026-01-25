@@ -221,8 +221,8 @@
           <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
           ${stock !== null ? `<div class="stock">Na stanju: ${esc(stock)}</div>` : ""}
         </div>
-        <div <h3>Cijena</h3> 
-        class="price">${esc(o.cijena || "")}</div>
+        <h3>Cijena</h3>
+        <div class="price">${esc(o.cijena || "")}</div>
       </div>
 
       ${imgs.length ? `
