@@ -5,157 +5,141 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oglas | AMEA Tech</title>
   <link rel="stylesheet" href="style.css?v=20260121-2">
- <style>
-  .wrap{
-    max-width:1100px;
-    margin:30px auto;
-    padding:0 16px
-  }
 
-  /* GLAVNA KARTICA – DARK */
-  .card{
-    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:16px;
-    padding:18px;
-    color:#eaeaea;
-    box-shadow: 0 18px 55px rgba(0,0,0,.45);
-  }
+  <style>
+    body{ background:#0b0f1a; color:#eaeaea; }
+    .wrap{max-width:1100px;margin:30px auto;padding:0 16px}
+    .card{
+      background: rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    }
 
-  .top{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    align-items:flex-start;
-    flex-wrap:wrap
-  }
+    .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .price{font-weight:900;font-size:18px;color:#ffb347}
+    .muted{opacity:.75;color:#a8b3cf}
 
-  h1{
-    color:#dbe3ff;
-  }
+    .kbadge{
+      display:inline-block;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      color:#cfd8ff;
+      margin-top:8px;
+    }
 
-  h3{
-    color:#9bb8ff;
-    margin-bottom:6px;
-  }
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:14px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
 
-  .price{
-    font-weight:800;
-    font-size:18px;
-    color:#ffb347;
-  }
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .gallery img{
+      width:100%;height:180px;object-fit:cover;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      cursor: zoom-in;
+    }
+    @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:160px}}
 
-  .muted{
-    opacity:.75;
-    color:#a8b3cf;
-  }
+    h3{margin:0 0 8px;color:#1e90ff}
+    .spec{margin:10px 0 0 18px;color:#cfd8ff}
+    .contact a{display:inline-block;margin-right:10px;text-decoration:none;color:#ffb347;font-weight:800}
+    .stock{margin-top:8px;color:#cfd8ff;font-weight:700}
 
-  .grid{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:16px
-  }
+    /* Back button kao u kategorijama */
+    .back-wrapper{max-width:none;padding-left:0;margin:0 0 14px}
+    .back-btn{
+      display:inline-block;
+      background:#A9A9A9;
+      color:#203450;
+      text-decoration:none;
+      font-weight:700;
+      padding:10px 18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.15);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
 
-  /* GALERIJA */
-  .gallery{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:14px
-  }
-
-  .gallery img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(0,0,0,.35);
-    cursor:zoom-in;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-
-  .gallery img:hover{
-    transform:scale(1.03);
-    box-shadow:0 14px 35px rgba(30,144,255,.25);
-  }
-
-  .spec{
-    margin:10px 0 0 18px;
-    color:#cfd8ff;
-  }
-
-  .contact a{
-    display:inline-block;
-    margin-right:10px;
-    text-decoration:none;
-    font-weight:700;
-    color:#ffb347;
-  }
-
-  /* LIGHTBOX */
-  #lightbox{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.9);
-    align-items:center;
-    justify-content:center;
-    padding:18px;
-    z-index:999999
-  }
-
-  #lightbox img{
-    max-width:min(1100px,95vw);
-    max-height:90vh;
-    border-radius:16px;
-    background:#000;
-    box-shadow:0 20px 60px rgba(0,0,0,.7);
-  }
-
-   .lb-btn{
-      position:absolute; top:50%;
+    /* Lightbox */
+    #lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.88);
+      z-index:999999;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    #lbImg{
+      max-width:min(1100px, 96vw);
+      max-height:88vh;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#111;
+    }
+    .lb-btn{
+      position:fixed;
+      top:50%;
       transform:translateY(-50%);
-      width:44px;height:44px;border-radius:999px;
-      border:0; cursor:pointer;
-      background:rgba(255,255,255,.16);
-      color:#fff;font-size:22px;font-weight:900;
-      display:flex;align-items:center;justify-content:center;
+      width:44px;height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      font-size:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
       user-select:none;
     }
-    .lb-btn:hover{background:rgba(255,255,255,.25)}
-    .lb-prev{left:10px}
-    .lb-next{right:10px}
+    .lb-prev{left:18px}
+    .lb-next{right:18px}
     .lb-close{
-      position:absolute; top:10px; right:10px;
-      width:44px;height:44px;border-radius:999px;
-      border:0; cursor:pointer;
-      background:rgba(255,255,255,.16);
-      color:#fff;font-size:22px;font-weight:900;
-      display:flex;align-items:center;justify-content:center;
+      position:fixed;
+      top:18px; right:18px;
+      width:44px;height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      font-size:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
     }
-   
-  @media(max-width:900px){
-    .grid{grid-template-columns:1fr}
-    .gallery{grid-template-columns:repeat(2,1fr)}
-    .gallery img{height:160px}
-  }
-</style>
+    .lb-tip{
+      position:fixed;
+      bottom:16px;
+      left:50%;
+      transform:translateX(-50%);
+      color:#cfd8ff;
+      font-size:12px;
+      opacity:.8;
+    }
+  </style>
 </head>
-<body>
-<div class="wrap">
-    <a href="javascript:history.back()" class="muted">← Nazad</a>
-    <div id="content" class="card" style="margin-top:12px">Učitavam...</div>
- </div>
 
+<body>
+  <div class="wrap">
+    <div class="back-wrapper">
+      <a href="index.html" class="back-btn">← Nazad</a>
+    </div>
+
+    <div id="content" class="card">Učitavam...</div>
+  </div>
 
   <div id="lightbox">
-    <div class="lb-inner" id="lbInner">
-      <button class="lb-close" id="lbClose" type="button">×</button>
-      <button class="lb-btn lb-prev" id="lbPrev" type="button">‹</button>
-      <img id="lightboxImg" src="" alt="">
-      <button class="lb-btn lb-next" id="lbNext" type="button">›</button>
-    </div>
+    <div class="lb-close" id="lbClose">✕</div>
+    <div class="lb-btn lb-prev" id="lbPrev">‹</div>
+    <img id="lbImg" src="" alt="">
+    <div class="lb-btn lb-next" id="lbNext">›</div>
+    <div class="lb-tip">Tip: ← → za slike, ESC zatvara</div>
   </div>
 
 <script>
@@ -174,73 +158,79 @@
     return "";
   }
 
-  // Lightbox state
   let LB_IMGS = [];
-  let LB_INDEX = 0;
+  let LB_I = 0;
 
-  function openLB(index){
-    LB_INDEX = index;
+  function openLB(i){
     const lb = document.getElementById("lightbox");
-    const img = document.getElementById("lightboxImg");
-    img.src = LB_IMGS[LB_INDEX] || "";
+    const img = document.getElementById("lbImg");
+    LB_I = i;
+    img.src = LB_IMGS[LB_I] || "";
     lb.style.display = "flex";
   }
   function closeLB(){
     const lb = document.getElementById("lightbox");
-    const img = document.getElementById("lightboxImg");
+    const img = document.getElementById("lbImg");
     lb.style.display = "none";
     img.src = "";
   }
   function prevLB(){
-    if(!LB_IMGS.length) return;
-    LB_INDEX = (LB_INDEX - 1 + LB_IMGS.length) % LB_IMGS.length;
-    document.getElementById("lightboxImg").src = LB_IMGS[LB_INDEX];
+    if (!LB_IMGS.length) return;
+    LB_I = (LB_I - 1 + LB_IMGS.length) % LB_IMGS.length;
+    document.getElementById("lbImg").src = LB_IMGS[LB_I];
   }
   function nextLB(){
-    if(!LB_IMGS.length) return;
-    LB_INDEX = (LB_INDEX + 1) % LB_IMGS.length;
-    document.getElementById("lightboxImg").src = LB_IMGS[LB_INDEX];
+    if (!LB_IMGS.length) return;
+    LB_I = (LB_I + 1) % LB_IMGS.length;
+    document.getElementById("lbImg").src = LB_IMGS[LB_I];
   }
 
   async function loadOglas() {
     const id = q("id");
     const el = document.getElementById("content");
-    if (!id) { el.innerHTML = "Nedostaje id oglasa."; return; }
+
+    if (!id) {
+      el.innerHTML = `<div class="muted">Nedostaje id oglasa. Otvori kao: <b>oglas.html?id=...</b></div>`;
+      return;
+    }
 
     const res = await fetch(API_BASE + "/api/oglasi", { cache: "no-store" });
+    if (!res.ok){
+      el.innerHTML = `<div class="muted">Greška API: ${esc(res.status)}</div>`;
+      return;
+    }
+
     const data = await res.json();
     const items = data.items || [];
     const o = items.find(x => x.id === id);
 
-    if (!o) { el.innerHTML = "Oglas nije pronađen."; return; }
+    if (!o) {
+      el.innerHTML = `<div class="muted">Oglas nije pronađen.</div>`;
+      return;
+    }
 
     const imgs = (Array.isArray(o.slike) ? o.slike : []).map(safeImgUrl).filter(Boolean);
     LB_IMGS = imgs;
 
-    // Količina: pokaži i kad je 0
-    const qty = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
+    const stock = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
 
     el.innerHTML = `
       <div class="top">
         <div>
           <h1 style="margin:0">${esc(o.naziv)}</h1>
           <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
+          ${stock !== null ? `<div class="stock">Na stanju: ${esc(stock)}</div>` : ""}
         </div>
-
-        <h3>Cijena</h3>
-        <div style="text-align:right">
-          <div class="price">${esc(o.cijena || "")}</div>
-          ${qty !== null ? `<div class="muted" style="margin-top:6px">Na stanju: <b>${esc(qty)}</b></div>` : ""}
-        </div>
+        <div <h3>Cijena</h3>class="price">${esc(o.cijena || "")}</div>
       </div>
 
       ${imgs.length ? `
         <div class="gallery">
-          ${imgs.map((u,i) => `<img src="${esc(u)}" alt="" class="gimg" data-i="${i}">`).join("")}
+          ${imgs.map((u, idx) => `<img src="${esc(u)}" alt="" data-i="${idx}" class="gimg">`).join("")}
         </div>
       ` : `<p class="muted" style="margin-top:14px">Nema slika za ovaj oglas.</p>`}
 
-      <div class="grid" style="margin-top:14px">
+      <div class="grid">
         <div>
           ${o.opis ? `<h3>Opis</h3><p class="muted" style="margin-top:6px">${esc(o.opis)}</p>` : ""}
           ${(o.spec||[]).length ? `<h3>Specifikacije</h3><ul class="spec muted">${(o.spec||[]).map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : ""}
@@ -256,30 +246,33 @@
       </div>
     `;
 
-    // Bind lightbox AFTER render
+    // klik na thumbs -> lightbox
     document.querySelectorAll(".gimg").forEach(img => {
-      img.addEventListener("click", () => openLB(Number(img.dataset.i || 0)));
-    });
-
-    const lb = document.getElementById("lightbox");
-    const inner = document.getElementById("lbInner");
-
-    document.getElementById("lbClose").onclick = closeLB;
-    document.getElementById("lbPrev").onclick = (e) => { e.stopPropagation(); prevLB(); };
-    document.getElementById("lbNext").onclick = (e) => { e.stopPropagation(); nextLB(); };
-
-    // klik van slike zatvara
-    lb.addEventListener("click", closeLB);
-    inner.addEventListener("click", (e) => e.stopPropagation());
-
-    // tipke na tastaturi: ESC, ←, →
-    document.addEventListener("keydown", (e) => {
-      if (lb.style.display !== "flex") return;
-      if (e.key === "Escape") closeLB();
-      if (e.key === "ArrowLeft") prevLB();
-      if (e.key === "ArrowRight") nextLB();
+      img.addEventListener("click", () => {
+        const i = Number(img.dataset.i || 0);
+        openLB(i);
+      });
     });
   }
+
+  // Lightbox controls
+  document.getElementById("lbClose").addEventListener("click", closeLB);
+  document.getElementById("lbPrev").addEventListener("click", prevLB);
+  document.getElementById("lbNext").addEventListener("click", nextLB);
+
+  // klik vani zatvara (ali ne kad klikneš na sliku/dugmad)
+  document.getElementById("lightbox").addEventListener("click", (e) => {
+    if (e.target.id === "lightbox") closeLB();
+  });
+
+  // tipke
+  window.addEventListener("keydown", (e) => {
+    const open = document.getElementById("lightbox").style.display === "flex";
+    if (!open) return;
+    if (e.key === "Escape") closeLB();
+    if (e.key === "ArrowLeft") prevLB();
+    if (e.key === "ArrowRight") nextLB();
+  });
 
   loadOglas();
 </script>
