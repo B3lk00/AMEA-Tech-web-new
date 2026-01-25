@@ -13,12 +13,52 @@
     .muted{opacity:.75}
     .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
     .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid #e1e7f2;background:#f6f8ff}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid #e1e7f2;background:#f6f8ff;cursor:zoom-in}
     .spec{margin:10px 0 0 18px}
     .contact a{display:inline-block;margin-right:10px;text-decoration:underline;color:inherit}
     @media(max-width:900px){.grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:160px}}
-    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:18px;z-index:999999}
-    #lightbox img{max-width:min(1100px,95vw);max-height:90vh;border-radius:14px;background:#fff}
+
+    /* Lightbox */
+    #lightbox{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);
+      align-items:center;justify-content:center;padding:18px;z-index:999999;
+    }
+    #lightbox .lb-inner{
+      position:relative;
+      max-width:min(1100px, 96vw);
+      max-height:92vh;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    #lightbox img{
+      max-width:100%;
+      max-height:92vh;
+      border-radius:14px;
+      background:#fff;
+    }
+    .lb-btn{
+      position:absolute; top:50%;
+      transform:translateY(-50%);
+      width:44px;height:44px;border-radius:999px;
+      border:0; cursor:pointer;
+      background:rgba(255,255,255,.16);
+      color:#fff;font-size:22px;font-weight:900;
+      display:flex;align-items:center;justify-content:center;
+      user-select:none;
+    }
+    .lb-btn:hover{background:rgba(255,255,255,.25)}
+    .lb-prev{left:10px}
+    .lb-next{right:10px}
+    .lb-close{
+      position:absolute; top:10px; right:10px;
+      width:44px;height:44px;border-radius:999px;
+      border:0; cursor:pointer;
+      background:rgba(255,255,255,.16);
+      color:#fff;font-size:22px;font-weight:900;
+      display:flex;align-items:center;justify-content:center;
+    }
   </style>
 </head>
 <body>
@@ -28,7 +68,12 @@
   </div>
 
   <div id="lightbox">
-    <img id="lightboxImg" src="" alt="">
+    <div class="lb-inner" id="lbInner">
+      <button class="lb-close" id="lbClose" type="button">×</button>
+      <button class="lb-btn lb-prev" id="lbPrev" type="button">‹</button>
+      <img id="lightboxImg" src="" alt="">
+      <button class="lb-btn lb-next" id="lbNext" type="button">›</button>
+    </div>
   </div>
 
 <script>
@@ -47,6 +92,34 @@
     return "";
   }
 
+  // Lightbox state
+  let LB_IMGS = [];
+  let LB_INDEX = 0;
+
+  function openLB(index){
+    LB_INDEX = index;
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg");
+    img.src = LB_IMGS[LB_INDEX] || "";
+    lb.style.display = "flex";
+  }
+  function closeLB(){
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg");
+    lb.style.display = "none";
+    img.src = "";
+  }
+  function prevLB(){
+    if(!LB_IMGS.length) return;
+    LB_INDEX = (LB_INDEX - 1 + LB_IMGS.length) % LB_IMGS.length;
+    document.getElementById("lightboxImg").src = LB_IMGS[LB_INDEX];
+  }
+  function nextLB(){
+    if(!LB_IMGS.length) return;
+    LB_INDEX = (LB_INDEX + 1) % LB_IMGS.length;
+    document.getElementById("lightboxImg").src = LB_IMGS[LB_INDEX];
+  }
+
   async function loadOglas() {
     const id = q("id");
     const el = document.getElementById("content");
@@ -60,6 +133,10 @@
     if (!o) { el.innerHTML = "Oglas nije pronađen."; return; }
 
     const imgs = (Array.isArray(o.slike) ? o.slike : []).map(safeImgUrl).filter(Boolean);
+    LB_IMGS = imgs;
+
+    // Količina: pokaži i kad je 0
+    const qty = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
 
     el.innerHTML = `
       <div class="top">
@@ -67,12 +144,15 @@
           <h1 style="margin:0">${esc(o.naziv)}</h1>
           <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
         </div>
-        <div class="price">${esc(o.cijena || "")}</div>
+        <div style="text-align:right">
+          <div class="price">${esc(o.cijena || "")}</div>
+          ${qty !== null ? `<div class="muted" style="margin-top:6px">Na stanju: <b>${esc(qty)}</b></div>` : ""}
+        </div>
       </div>
 
       ${imgs.length ? `
         <div class="gallery">
-          ${imgs.map(u => `<img src="${esc(u)}" alt="" class="gimg" data-full="${esc(u)}" style="cursor:zoom-in">`).join("")}
+          ${imgs.map((u,i) => `<img src="${esc(u)}" alt="" class="gimg" data-i="${i}">`).join("")}
         </div>
       ` : `<p class="muted" style="margin-top:14px">Nema slika za ovaj oglas.</p>`}
 
@@ -92,20 +172,28 @@
       </div>
     `;
 
-    // Lightbox AFTER render
-    const lb = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lightboxImg");
-
+    // Bind lightbox AFTER render
     document.querySelectorAll(".gimg").forEach(img => {
-      img.addEventListener("click", () => {
-        lbImg.src = img.dataset.full;
-        lb.style.display = "flex";
-      });
+      img.addEventListener("click", () => openLB(Number(img.dataset.i || 0)));
     });
 
-    lb.addEventListener("click", () => {
-      lb.style.display = "none";
-      lbImg.src = "";
+    const lb = document.getElementById("lightbox");
+    const inner = document.getElementById("lbInner");
+
+    document.getElementById("lbClose").onclick = closeLB;
+    document.getElementById("lbPrev").onclick = (e) => { e.stopPropagation(); prevLB(); };
+    document.getElementById("lbNext").onclick = (e) => { e.stopPropagation(); nextLB(); };
+
+    // klik van slike zatvara
+    lb.addEventListener("click", closeLB);
+    inner.addEventListener("click", (e) => e.stopPropagation());
+
+    // tipke na tastaturi: ESC, ←, →
+    document.addEventListener("keydown", (e) => {
+      if (lb.style.display !== "flex") return;
+      if (e.key === "Escape") closeLB();
+      if (e.key === "ArrowLeft") prevLB();
+      if (e.key === "ArrowRight") nextLB();
     });
   }
 
