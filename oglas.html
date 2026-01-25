@@ -254,18 +254,6 @@
       </div>
     `;
 
-/* Back kao na kategorijama - skroz lijevo */
-.back-wrapper{
-  max-width: none;
-  padding-left: 0;
-  margin: 0 0 12px 0;
-}
-
-/* da kartica ne “bježi” kad nema inline margin */
-#content{ margin-top: 0; }
-
-    
-
     // Bind lightbox AFTER render
     document.querySelectorAll(".gimg").forEach(img => {
       img.addEventListener("click", () => openLB(Number(img.dataset.i || 0)));
