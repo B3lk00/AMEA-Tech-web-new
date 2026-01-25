@@ -640,8 +640,8 @@ body{
   display: flex;
   flex-direction: column;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(30,144,255,0.18);
+  background: rgba(128,128,128,0.06);
+  border: 1px solid rgba(6,28,51,0.18);
   border-radius: 14px;
   overflow: hidden;
 
