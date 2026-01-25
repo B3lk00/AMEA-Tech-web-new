@@ -226,6 +226,8 @@
           <h1 style="margin:0">${esc(o.naziv)}</h1>
           <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
         </div>
+
+        <h3>Cijena</h3>
         <div style="text-align:right">
           <div class="price">${esc(o.cijena || "")}</div>
           ${qty !== null ? `<div class="muted" style="margin-top:6px">Na stanju: <b>${esc(qty)}</b></div>` : ""}
