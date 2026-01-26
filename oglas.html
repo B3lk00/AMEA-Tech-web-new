@@ -277,12 +277,14 @@
         </div>
         <div>
           <h3>Kontakt</h3>
-          <div class="contact muted" style="margin-top:6px">
-            ${o.kontakt?.telefon ? `<a href="tel:${esc(o.kontakt.telefon)}">📞 ${esc(o.kontakt.telefon)}</a>` : ""}
-            ${mailHref ? `<a href="${mailHref}">✉️ Pošalji upit</a>` : ""}
-          </div>
-          <div class="muted" style="margin-top:10px;font-size:12px">ID: ${esc(o.id)}</div>
-        </div>
+         <div class="contact muted" style="margin-top:6px">
+             ${o.kontakt?.telefon ? `<a href="tel:${esc(o.kontakt.telefon)}">📞 ${esc(o.kontakt.telefon)}</a>` : ""}
+
+            ${mail ? `
+            <a href="${mailHref}" id="mailLink">✉️ Pošalji upit</a>
+            <a href="javascript:void(0)" id="copyUpit">📋 Kopiraj upit</a>
+           ` : `<span class="muted">✉️ Email nije postavljen za ovaj oglas.</span>`}
+           </div>
       </div>
     `;
 
