@@ -233,6 +233,42 @@
     const stock = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
     const sifra = (o.sifra || "").trim();
 
+if (mail) {
+  const txtUpit =
+`Pozdrav,
+
+Zanima me proizvod:
+Šifra: ${sifra || "-"}
+Naziv: ${o.naziv || "-"}
+Cijena: ${fmtKM(o.cijena || "") || "-"}
+
+Molim ponudu i dostupnost.
+
+Hvala!`;
+
+  const copyBtn = document.getElementById("copyUpit");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(txtUpit);
+        copyBtn.textContent = "✅ Kopirano";
+        setTimeout(() => copyBtn.textContent = "📋 Kopiraj upit", 1500);
+      } catch (e) {
+        alert("Ne mogu kopirati. Označi tekst ručno:\n\n" + txtUpit);
+      }
+    });
+  }
+
+  // fallback: ako mailto ne otvori compose, prikaži poruku
+  const ml = document.getElementById("mailLink");
+  if (ml) {
+    ml.addEventListener("click", () => {
+      // ništa – samo ostavi mailto da pokuša otvoriti.
+      // Ako user nema mail handler, bar ima Copy.
+    });
+  }
+}
+
 
     el.innerHTML = `
       <div class="top">
@@ -296,42 +332,6 @@
     if (e.key === "ArrowLeft") prevLB();
     if (e.key === "ArrowRight") nextLB();
   });
-
-  if (mail) {
-  const txtUpit =
-`Pozdrav,
-
-Zanima me proizvod:
-Šifra: ${sifra || "-"}
-Naziv: ${o.naziv || "-"}
-Cijena: ${fmtKM(o.cijena || "") || "-"}
-
-Molim ponudu i dostupnost.
-
-Hvala!`;
-
-  const copyBtn = document.getElementById("copyUpit");
-  if (copyBtn) {
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(txtUpit);
-        copyBtn.textContent = "✅ Kopirano";
-        setTimeout(() => copyBtn.textContent = "📋 Kopiraj upit", 1500);
-      } catch (e) {
-        alert("Ne mogu kopirati. Označi tekst ručno:\n\n" + txtUpit);
-      }
-    });
-  }
-
-  // fallback: ako mailto ne otvori compose, prikaži poruku
-  const ml = document.getElementById("mailLink");
-  if (ml) {
-    ml.addEventListener("click", () => {
-      // ništa – samo ostavi mailto da pokuša otvoriti.
-      // Ako user nema mail handler, bar ima Copy.
-    });
-  }
-}
 
 
   loadOglas();
