@@ -236,9 +236,9 @@
     const sifra = (o.sifra || "").trim();
 
     // mail + mailto link
-    const mail = (o.kontakt?.email || "").trim();
-    const subject = `Upit za proizvod - ${sifra || o.id || ""}`.trim();
-    const body =
+   const mail = "ameatech25@gmail.com"; // fiksno na tvoj Gmail
+const subject = `Upit za proizvod - ${sifra || o.id || ""}`.trim();
+const body =
 `Pozdrav,
 
 Zanima me proizvod:
@@ -250,9 +250,15 @@ Molim ponudu i dostupnost.
 
 Hvala!`;
 
-    const mailHref = mail
-      ? `mailto:${encodeURIComponent(mail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-      : "";
+const gmailHref =
+  `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(mail)}` +
+  `&su=${encodeURIComponent(subject)}` +
+  `&body=${encodeURIComponent(body)}`;
+
+// fallback ako neko nema Gmail login
+const mailtoHref =
+  `mailto:${encodeURIComponent(mail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
 
     // Render HTML
     el.innerHTML = `
@@ -290,10 +296,9 @@ Hvala!`;
           <div class="contact muted" style="margin-top:6px">
             ${o.kontakt?.telefon ? `<a href="tel:${esc(o.kontakt.telefon)}">📞 ${esc(o.kontakt.telefon)}</a>` : ""}
 
-            ${mail ? `
-              <a href="${mailHref}" id="mailLink">✉️ Pošalji upit</a>
-              <a href="javascript:void(0)" id="copyUpit">📋 Kopiraj upit</a>
-            ` : `<span class="muted">✉️ Email nije postavljen za ovaj oglas.</span>`}
+           <a href="${gmailHref}" target="_blank" rel="noopener">✉️ Pošalji upit (Gmail)</a>
+           <a href="${mailtoHref}">📨 Pošalji upit (Mail app)</a>
+           <a href="javascript:void(0)" id="copyUpit">📋 Kopiraj upit</a>
           </div>
 
           <div class="muted" style="margin-top:10px;font-size:12px">ID: ${esc(o.id)}</div>
