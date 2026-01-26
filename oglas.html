@@ -19,7 +19,12 @@
 
     .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
     .priceBox{text-align:right}
-    .priceLabel{font-size:12px;color:#a8b3cf;margin-bottom:4px}
+    .priceLabel{
+     font-size:14px;
+     font-weight:800;   /* bold */
+     color:#1e90ff;     /* kao ostali naslovi */
+     margin-bottom:4px;
+    }
     .price{font-weight:900;font-size:18px;color:#ffb347}
     .muted{opacity:.75;color:#a8b3cf}
 
@@ -178,7 +183,7 @@
           ${stock !== null ? `<div class="stock">Na stanju: ${esc(stock)}</div>` : ""}
         </div>
         <div class="priceBox">
-          <div class="priceLabel"<h3>Cijena</div>
+          <div class="priceLabel">Cijena</div>
           <div class="price">${esc(fmtKM(o.cijena || ""))}</div>
         </div>
       </div>
