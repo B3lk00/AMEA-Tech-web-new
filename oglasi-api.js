@@ -34,14 +34,17 @@ function renderOglasi(items, container) {
     return;
   }
 
+  // zapamti trenutno (kategorija.html?...) da oglas može vratiti nazad
+  const back = encodeURIComponent(
+    location.pathname.split("/").pop() + location.search
+  );
+
   container.innerHTML = items.map((o) => {
-    const back = encodeURIComponent(
-  location.pathname.split("/").pop() + location.search
-);
-const href = `oglas.html?id=${encodeURIComponent(o.id)}&back=${back}`;
+    const href = `oglas.html?id=${encodeURIComponent(o.id)}&back=${back}`;
     const thumb = (Array.isArray(o.slike) && o.slike.length) ? o.slike[0] : "";
 
     const qty = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
+    const sifra = (o.sifra || "").trim();
 
     return `
       <a href="${href}" class="ad-link" style="text-decoration:none;color:inherit;display:block">
@@ -50,10 +53,11 @@ const href = `oglas.html?id=${encodeURIComponent(o.id)}&back=${back}`;
           <div class="ad-body">
             <div class="ad-top">
               <h3 class="ad-title">${esc(o.naziv || "")}</h3>
-              <div class="ad-price">${esc(fmtKM(o.cijena || ""))}</div>
+              <div class="ad-price"><b>${esc(fmtKM(o.cijena || ""))}</b></div>
             </div>
 
             <div class="ad-meta">
+              ${sifra ? `<span class="ad-badge">Šifra: ${esc(sifra)}</span>` : ""}
               ${o.stanje ? `<span class="ad-badge">${esc(o.stanje)}</span>` : ""}
               ${qty !== null ? `<span class="ad-badge">Na stanju: ${esc(qty)}</span>` : ""}
             </div>
