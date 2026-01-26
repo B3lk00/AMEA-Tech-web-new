@@ -695,3 +695,60 @@ body{
 @media (max-width: 600px){
   .ad-img{ height: 180px; }
 }
+
+/*----------------------------------------------*/
+/* ========== MOBILE TUNING ========== */
+@media (max-width: 600px){
+
+  /* HOME: povećaj sve da ne bude sitno */
+  body.home{
+    font-size: 16px;
+  }
+  body.home .nav{
+    padding: 14px 16px;
+  }
+  body.home .nav .logo{
+    font-size: 20px;
+  }
+  body.home .nav a{
+    font-size: 16px;
+  }
+  body.home .hero-content{
+    margin-top: 80px;
+    padding: 16px;
+  }
+  body.home .tech-time{
+    font-size: 44px; /* veće nego prije */
+  }
+  body.home .tech-date{
+    font-size: 16px;
+  }
+
+  /* OGLAS: smanji da ne bude “preveliko” */
+  body.oglas-page{
+    font-size: 14px;
+  }
+  body.oglas-page .wrap{
+    margin: 16px auto;
+    padding: 0 12px;
+  }
+  body.oglas-page .card{
+    padding: 14px;
+    border-radius: 14px;
+  }
+  body.oglas-page h1{
+    font-size: 18px;
+    line-height: 1.25;
+  }
+  body.oglas-page .price{
+    font-size: 16px;
+  }
+  body.oglas-page .gallery img{
+    height: 130px; /* manja galeria na mob */
+  }
+  body.oglas-page .back-btn{
+    padding: 9px 14px;
+    border-radius: 10px;
+  }
+}
+
