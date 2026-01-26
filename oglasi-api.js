@@ -35,7 +35,10 @@ function renderOglasi(items, container) {
   }
 
   container.innerHTML = items.map((o) => {
-    const href = `oglas.html?id=${encodeURIComponent(o.id)}`;
+    const back = encodeURIComponent(
+  location.pathname.split("/").pop() + location.search
+);
+const href = `oglas.html?id=${encodeURIComponent(o.id)}&back=${back}`;
     const thumb = (Array.isArray(o.slike) && o.slike.length) ? o.slike[0] : "";
 
     const qty = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
