@@ -18,19 +18,10 @@
     }
 
     .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .priceBox{text-align:right}
+    .priceLabel{font-size:12px;color:#a8b3cf;margin-bottom:4px}
     .price{font-weight:900;font-size:18px;color:#ffb347}
     .muted{opacity:.75;color:#a8b3cf}
-
-    .kbadge{
-      display:inline-block;
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.20);
-      color:#cfd8ff;
-      margin-top:8px;
-    }
 
     .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:14px}
     @media(max-width:900px){.grid{grid-template-columns:1fr}}
@@ -49,78 +40,37 @@
     .contact a{display:inline-block;margin-right:10px;text-decoration:none;color:#ffb347;font-weight:800}
     .stock{margin-top:8px;color:#cfd8ff;font-weight:700}
 
-    /* Back button kao u kategorijama */
     .back-wrapper{max-width:none;padding-left:0;margin:0 0 14px}
     .back-btn{
-      display:inline-block;
-      background:#A9A9A9;
-      color:#203450;
-      text-decoration:none;
-      font-weight:700;
-      padding:10px 18px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.15);
+      display:inline-block;background:#A9A9A9;color:#203450;text-decoration:none;font-weight:700;
+      padding:10px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.15);
       box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     }
 
-    /* Lightbox */
     #lightbox{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.88);
-      z-index:999999;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
+      display:none; position:fixed; inset:0; background:rgba(0,0,0,.88);
+      z-index:999999; align-items:center; justify-content:center; padding:18px;
     }
     #lbImg{
-      max-width:min(1100px, 96vw);
-      max-height:88vh;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:#111;
+      max-width:min(1100px, 96vw); max-height:88vh; border-radius:16px;
+      border:1px solid rgba(255,255,255,.12); background:#111;
     }
     .lb-btn{
-      position:fixed;
-      top:50%;
-      transform:translateY(-50%);
-      width:44px;height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      font-size:22px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      user-select:none;
+      position:fixed; top:50%; transform:translateY(-50%);
+      width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10); color:#fff; font-size:22px;
+      display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none;
     }
     .lb-prev{left:18px}
     .lb-next{right:18px}
     .lb-close{
-      position:fixed;
-      top:18px; right:18px;
-      width:44px;height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      font-size:22px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
+      position:fixed; top:18px; right:18px; width:44px;height:44px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.10);
+      color:#fff; font-size:22px; display:flex; align-items:center; justify-content:center; cursor:pointer;
     }
     .lb-tip{
-      position:fixed;
-      bottom:16px;
-      left:50%;
-      transform:translateX(-50%);
-      color:#cfd8ff;
-      font-size:12px;
-      opacity:.8;
+      position:fixed; bottom:16px; left:50%; transform:translateX(-50%);
+      color:#cfd8ff; font-size:12px; opacity:.8;
     }
   </style>
 </head>
@@ -150,8 +100,14 @@
       "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
     }[m]));
   }
+  function fmtKM(v){
+    const s = String(v ?? "").trim();
+    if(!s) return "";
+    if (/\bKM\b/i.test(s) || /€|\$/.test(s)) return s;
+    if (/^\d+([.,]\d+)?$/.test(s)) return s + " KM";
+    return s + " KM";
+  }
   function q(name){ return new URLSearchParams(location.search).get(name); }
-
   function safeImgUrl(u){
     const s = String(u || "").trim();
     if (s.startsWith("http://") || s.startsWith("https://")) return s;
@@ -190,11 +146,11 @@
     const el = document.getElementById("content");
 
     if (!id) {
-      el.innerHTML = `<div class="muted">Nedostaje id oglasa. Otvori kao: <b>oglas.html?id=...</b></div>`;
+      el.innerHTML = `<div class="muted">Nedostaje id oglasa.</div>`;
       return;
     }
 
-    const res = await fetch(API_BASE + "/api/oglasi", { cache: "no-store" });
+    const res = await fetch(API_BASE + "/api/oglasi?_=" + Date.now(), { cache: "no-store" });
     if (!res.ok){
       el.innerHTML = `<div class="muted">Greška API: ${esc(res.status)}</div>`;
       return;
@@ -221,8 +177,10 @@
           <div class="muted">${esc(o.kategorija)} ${o.stanje ? "• " + esc(o.stanje) : ""}</div>
           ${stock !== null ? `<div class="stock">Na stanju: ${esc(stock)}</div>` : ""}
         </div>
-        <h3>Cijena</h3>
-        <div class="price">${esc(o.cijena || "")}</div>
+        <div class="priceBox">
+          <div class="priceLabel">Cijena</div>
+          <div class="price">${esc(fmtKM(o.cijena || ""))}</div>
+        </div>
       </div>
 
       ${imgs.length ? `
@@ -247,26 +205,19 @@
       </div>
     `;
 
-    // klik na thumbs -> lightbox
     document.querySelectorAll(".gimg").forEach(img => {
-      img.addEventListener("click", () => {
-        const i = Number(img.dataset.i || 0);
-        openLB(i);
-      });
+      img.addEventListener("click", () => openLB(Number(img.dataset.i || 0)));
     });
   }
 
-  // Lightbox controls
   document.getElementById("lbClose").addEventListener("click", closeLB);
   document.getElementById("lbPrev").addEventListener("click", prevLB);
   document.getElementById("lbNext").addEventListener("click", nextLB);
 
-  // klik vani zatvara (ali ne kad klikneš na sliku/dugmad)
   document.getElementById("lightbox").addEventListener("click", (e) => {
     if (e.target.id === "lightbox") closeLB();
   });
 
-  // tipke
   window.addEventListener("keydown", (e) => {
     const open = document.getElementById("lightbox").style.display === "flex";
     if (!open) return;
