@@ -83,7 +83,7 @@
 <body>
   <div class="wrap">
     <div class="back-wrapper">
-      <a href="index.html" class="back-btn">← Nazad</a>
+      <a id="backLink" href="index.html" class="back-btn">← Nazad</a>
     </div>
 
     <div id="content" class="card">Učitavam...</div>
@@ -118,6 +118,19 @@
     if (s.startsWith("http://") || s.startsWith("https://")) return s;
     return "";
   }
+
+  // 🔙 vrati na kategoriju iz koje je oglas otvoren
+(function setBackLink(){
+  const back = q("back");
+  const a = document.getElementById("backLink");
+  if (!a) return;
+
+  if (back) {
+    a.href = decodeURIComponent(back);
+  } else {
+    a.href = "javascript:history.back()";
+  }
+})();
 
   let LB_IMGS = [];
   let LB_I = 0;
