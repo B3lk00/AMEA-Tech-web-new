@@ -1,8 +1,16 @@
 const API_BASE = "https://amea-oglasi-api.belmins1617.workers.dev";
 
+function fmtKM(v){
+  const s = String(v ?? "").trim();
+  if(!s) return "";
+  if (/\bKM\b/i.test(s) || /€|\$/.test(s)) return s;
+  if (/^\d+([.,]\d+)?$/.test(s)) return s + " KM";
+  return s + " KM";
+}
+
 async function ucitajOglase(kategorija) {
   const res = await fetch(
-    `${API_BASE}/api/oglasi?kategorija=${encodeURIComponent(kategorija)}`,
+    `${API_BASE}/api/oglasi?kategorija=${encodeURIComponent(kategorija)}&_=${Date.now()}`,
     { cache: "no-store" }
   );
   if (!res.ok) throw new Error("Ne mogu učitati oglase");
@@ -39,7 +47,7 @@ function renderOglasi(items, container) {
           <div class="ad-body">
             <div class="ad-top">
               <h3 class="ad-title">${esc(o.naziv || "")}</h3>
-              <div class="ad-price">${esc(o.cijena || "")}</div>
+              <div class="ad-price">${esc(fmtKM(o.cijena || ""))}</div>
             </div>
 
             <div class="ad-meta">
@@ -56,18 +64,26 @@ function renderOglasi(items, container) {
   }).join("");
 }
 
+let _poll;
+
 async function initOglasi(kategorija) {
   const container = document.getElementById("oglasi");
   if (!container) return;
 
-  container.innerHTML = "Učitavam...";
-
-  try {
-    const items = await ucitajOglase(kategorija);
-    renderOglasi(items, container);
-  } catch (e) {
-    container.innerHTML = `<p style="color:#b00;">Greška: ${esc(e.message)}</p>`;
+  async function refresh(){
+    try {
+      const items = await ucitajOglase(kategorija);
+      renderOglasi(items, container);
+    } catch (e) {
+      container.innerHTML = `<p style="color:#b00;">Greška: ${esc(e.message)}</p>`;
+    }
   }
+
+  container.innerHTML = "Učitavam...";
+  await refresh();
+
+  clearInterval(_poll);
+  _poll = setInterval(refresh, 10000); // 10s
 }
 
 window.initOglasi = initOglasi;
