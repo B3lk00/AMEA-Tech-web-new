@@ -176,10 +176,12 @@
     else btn.href = "index.html";
   })();
 
+  // Lightbox state
   let LB_IMGS = [];
   let LB_I = 0;
 
   function openLB(i){
+    if (!LB_IMGS.length) return;
     const lb = document.getElementById("lightbox");
     const img = document.getElementById("lbImg");
     LB_I = i;
@@ -233,8 +235,10 @@
     const stock = (o.kolicina === 0 || o.kolicina) ? Number(o.kolicina) : null;
     const sifra = (o.sifra || "").trim();
 
-if (mail) {
-  const txtUpit =
+    // mail + mailto link
+    const mail = (o.kontakt?.email || "").trim();
+    const subject = `Upit za proizvod - ${sifra || o.id || ""}`.trim();
+    const body =
 `Pozdrav,
 
 Zanima me proizvod:
@@ -246,30 +250,11 @@ Molim ponudu i dostupnost.
 
 Hvala!`;
 
-  const copyBtn = document.getElementById("copyUpit");
-  if (copyBtn) {
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(txtUpit);
-        copyBtn.textContent = "✅ Kopirano";
-        setTimeout(() => copyBtn.textContent = "📋 Kopiraj upit", 1500);
-      } catch (e) {
-        alert("Ne mogu kopirati. Označi tekst ručno:\n\n" + txtUpit);
-      }
-    });
-  }
+    const mailHref = mail
+      ? `mailto:${encodeURIComponent(mail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      : "";
 
-  // fallback: ako mailto ne otvori compose, prikaži poruku
-  const ml = document.getElementById("mailLink");
-  if (ml) {
-    ml.addEventListener("click", () => {
-      // ništa – samo ostavi mailto da pokuša otvoriti.
-      // Ako user nema mail handler, bar ima Copy.
-    });
-  }
-}
-
-
+    // Render HTML
     el.innerHTML = `
       <div class="top">
         <div>
@@ -299,32 +284,54 @@ Hvala!`;
           ${o.opis ? `<h3>Opis</h3><p class="muted" style="margin-top:6px">${esc(o.opis)}</p>` : ""}
           ${(o.spec||[]).length ? `<h3>Specifikacije</h3><ul class="spec muted">${(o.spec||[]).map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : ""}
         </div>
+
         <div>
           <h3>Kontakt</h3>
-         <div class="contact muted" style="margin-top:6px">
-             ${o.kontakt?.telefon ? `<a href="tel:${esc(o.kontakt.telefon)}">📞 ${esc(o.kontakt.telefon)}</a>` : ""}
+          <div class="contact muted" style="margin-top:6px">
+            ${o.kontakt?.telefon ? `<a href="tel:${esc(o.kontakt.telefon)}">📞 ${esc(o.kontakt.telefon)}</a>` : ""}
 
             ${mail ? `
-            <a href="${mailHref}" id="mailLink">✉️ Pošalji upit</a>
-            <a href="javascript:void(0)" id="copyUpit">📋 Kopiraj upit</a>
-           ` : `<span class="muted">✉️ Email nije postavljen za ovaj oglas.</span>`}
-           </div>
+              <a href="${mailHref}" id="mailLink">✉️ Pošalji upit</a>
+              <a href="javascript:void(0)" id="copyUpit">📋 Kopiraj upit</a>
+            ` : `<span class="muted">✉️ Email nije postavljen za ovaj oglas.</span>`}
+          </div>
+
+          <div class="muted" style="margin-top:10px;font-size:12px">ID: ${esc(o.id)}</div>
+        </div>
       </div>
     `;
 
+    // Gallery -> Lightbox
     document.querySelectorAll(".gimg").forEach(img => {
       img.addEventListener("click", () => openLB(Number(img.dataset.i || 0)));
     });
+
+    // Copy upit
+    const copyBtn = document.getElementById("copyUpit");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(body);
+          copyBtn.textContent = "✅ Kopirano";
+          setTimeout(() => copyBtn.textContent = "📋 Kopiraj upit", 1500);
+        } catch (e) {
+          alert("Ne mogu kopirati. Označi tekst ručno:\n\n" + body);
+        }
+      });
+    }
   }
 
+  // Lightbox controls
   document.getElementById("lbClose").addEventListener("click", closeLB);
   document.getElementById("lbPrev").addEventListener("click", prevLB);
   document.getElementById("lbNext").addEventListener("click", nextLB);
 
+  // klik vani zatvara
   document.getElementById("lightbox").addEventListener("click", (e) => {
     if (e.target.id === "lightbox") closeLB();
   });
 
+  // tipke
   window.addEventListener("keydown", (e) => {
     const open = document.getElementById("lightbox").style.display === "flex";
     if (!open) return;
@@ -332,7 +339,6 @@ Hvala!`;
     if (e.key === "ArrowLeft") prevLB();
     if (e.key === "ArrowRight") nextLB();
   });
-
 
   loadOglas();
 </script>
