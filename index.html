@@ -2,128 +2,247 @@
 <html lang="hr">
 <head>
   <meta charset="UTF-8">
-  <title>AMEA Tech d.o.o.</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-  <link rel="icon" type="image/png" href="./images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AMEA Tech d.o.o. | Prodaja, servis i IT podrška</title>
+
+  <meta
+    name="description"
+    content="AMEA Tech pruža prodaju i servis računara i laptopa, održavanje printera, prodaju tonera i pouzdanu IT podršku."
+  >
+
+  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
-<body>
 
 <body class="home">
-  
-<header class="hero">
-  <nav class="nav">
-  <div class="logo">
-    <img src="images/logo.png" alt="AMEA Tech logo">
+
+<header class="home-hero">
+  <nav class="home-nav">
+    <a href="index.html" class="home-logo" aria-label="AMEA Tech početna">
+      <img src="images/logo.png" alt="AMEA Tech logo">
+    </a>
+
+    <div class="home-nav-links">
+      <a href="#usluge">Usluge</a>
+      <a href="#prodaja">Prodaja</a>
+      <a href="o-nama.html">O nama</a>
+    </div>
+  </nav>
+
+  <div class="hero-decoration hero-decoration-one"></div>
+  <div class="hero-decoration hero-decoration-two"></div>
+  <div class="hero-background-logo"></div>
+
+  <div class="home-hero-content">
+    <div class="hero-badge">
+      AMEA Tech d.o.o.
+    </div>
+
+    <h1>
+      Tehnologija na koju se
+      <span>možete osloniti.</span>
+    </h1>
+
+    <p class="hero-description">
+      Prodaja i servis računara, laptopa, printera i tonera,
+      uz brzu i pouzdanu IT podršku za privatne i poslovne korisnike.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#prodaja" class="hero-button hero-button-primary">
+        Pogledaj opremu
+      </a>
+
+      <a href="o-nama.html" class="hero-button hero-button-secondary">
+        Saznaj više
+      </a>
+    </div>
+
+    <div class="tech-clock-panel">
+      <div class="clock-main-row">
+        <span class="clock-icon">◷</span>
+        <div class="tech-time" id="techTime">00:00:00</div>
+      </div>
+
+      <div class="clock-date-row">
+        <span>Datum</span>
+        <div class="tech-date" id="techDate">00.00.0000.</div>
+      </div>
+    </div>
   </div>
-  <ul>
-   <li><a href="o-nama.html">O nama</a></li>
-  </ul>
-</nav>
 
-  <div class="hero-bg-logo"></div>
-  
-  <div class="hero-content">
-    <h1>Welcome</h1>
-    <p>Brza i pouzdana IT podrška za firme i privatne korisnike</p>
-
-    
-<div class="tech-clock-panel fade-in">
-  <div class="tech-row">
-    <span class="tech-icon">🕒</span>
-    <div class="tech-time" id="techTime">00:00:00</div>
-  </div>
-
-  <div class="tech-row">
-    <span class="tech-icon">📅</span>
-    <div class="tech-date" id="techDate">00.00.0000</div>
-  </div>
-</div>
-
-
+  <a href="#usluge" class="scroll-indicator" aria-label="Idi na usluge">
+    <span></span>
+  </a>
 </header>
 
- <section id="usluge" class="services-strip">
-  <div class="section-title">
-    <span></span>
-    <h2>Naše usluge</h2>
-    <span></span>
-  </div>
+<main>
+  <section id="usluge" class="home-section">
+    <div class="home-section-heading">
+      <div>
+        <span class="section-label">Šta nudimo</span>
+        <h2>Naše usluge</h2>
+      </div>
 
-  <div class="service-icons">
-    <div class="service-icon">
-      <img src="images/service-pc.png" alt="Servis računara">
-      <p class="title">Servis računara</p>
-      <span class="desc">
-        Dijagnostika, popravak i nadogradnja računara i laptopa.
-      </span>
+      <p>
+        Sve što vam je potrebno za pouzdan i nesmetan rad IT opreme.
+      </p>
     </div>
 
-    <div class="service-icon">
-      <img src="images/service-printer.png" alt="Održavanje štampača">
-      <p class="title">Održavanje štampača</p>
-      <span class="desc">
-        Servis i redovno održavanje printera i kopir aparata.
-      </span>
+    <div class="home-card-grid">
+      <article class="home-service-card">
+        <div class="home-card-icon">
+          <img src="images/service-pc.png" alt="">
+        </div>
+
+        <div class="home-card-number">01</div>
+
+        <h3>Servis računara</h3>
+
+        <p>
+          Dijagnostika, popravak, čišćenje i nadogradnja računara i laptopa.
+        </p>
+      </article>
+
+      <article class="home-service-card">
+        <div class="home-card-icon">
+          <img src="images/service-printer.png" alt="">
+        </div>
+
+        <div class="home-card-number">02</div>
+
+        <h3>Održavanje štampača</h3>
+
+        <p>
+          Servis i redovno održavanje printera i kopir aparata.
+        </p>
+      </article>
+
+      <article class="home-service-card">
+        <div class="home-card-icon">
+          <img src="images/service-toner.png" alt="">
+        </div>
+
+        <div class="home-card-number">03</div>
+
+        <h3>Prodaja tonera</h3>
+
+        <p>
+          Originalni i zamjenski toneri i kertridži za veliki broj modela.
+        </p>
+      </article>
+
+      <article class="home-service-card">
+        <div class="home-card-icon">
+          <img src="images/service-support.png" alt="">
+        </div>
+
+        <div class="home-card-number">04</div>
+
+        <h3>IT podrška</h3>
+
+        <p>
+          Brza podrška na lokaciji ili udaljeno za privatne i poslovne korisnike.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="prodaja" class="home-section products-home-section">
+    <div class="home-section-heading">
+      <div>
+        <span class="section-label">Odaberite kategoriju</span>
+        <h2>Prodaja opreme</h2>
+      </div>
+
+      <p>
+        Pregledajte dostupne računare, laptope, monitore, tonere i kertridže.
+      </p>
     </div>
 
-    <div class="service-icon">
-      <img src="images/service-toner.png" alt="Prodaja tonera">
-      <p class="title">Prodaja tonera</p>
-      <span class="desc">
-        Kvalitetni toneri i kertridži za sve modele.
-      </span>
+    <div class="product-category-grid">
+      <a href="racunari.html" class="product-category-card">
+        <div class="product-category-icon">
+          <img src="images/icon-racunari.png" alt="Računari">
+        </div>
+
+        <div class="product-category-content">
+          <span>Računari</span>
+          <p>Kućne, poslovne i gaming konfiguracije.</p>
+        </div>
+
+        <div class="product-category-arrow">→</div>
+      </a>
+
+      <a href="laptopi.html" class="product-category-card">
+        <div class="product-category-icon">
+          <img src="images/icon-laptopi.png" alt="Laptopi">
+        </div>
+
+        <div class="product-category-content">
+          <span>Laptopi</span>
+          <p>Poslovni i kućni modeli za svaki budžet.</p>
+        </div>
+
+        <div class="product-category-arrow">→</div>
+      </a>
+
+      <a href="monitori.html" class="product-category-card">
+        <div class="product-category-icon">
+          <img src="images/icon-monitori.png" alt="Monitori">
+        </div>
+
+        <div class="product-category-content">
+          <span>Monitori</span>
+          <p>Office, gaming i profesionalni monitori.</p>
+        </div>
+
+        <div class="product-category-arrow">→</div>
+      </a>
+
+      <a href="toneri.html" class="product-category-card">
+        <div class="product-category-icon">
+          <img src="images/icon-toneri.png" alt="Toneri i kertridži">
+        </div>
+
+        <div class="product-category-content">
+          <span>Toneri i kertridži</span>
+          <p>Originalni i zamjenski za veliki broj printera.</p>
+        </div>
+
+        <div class="product-category-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-cta">
+    <div class="home-cta-glow"></div>
+
+    <div>
+      <span class="section-label">Trebate pomoć?</span>
+      <h2>Pouzdan partner za vašu IT opremu.</h2>
+
+      <p>
+        Obratite nam se za servis, savjet, nabavku opreme ili poslovnu IT podršku.
+      </p>
     </div>
 
-    <div class="service-icon">
-      <img src="images/service-support.png" alt="IT podrška">
-      <p class="title">IT podrška</p>
-      <span class="desc">
-        Brza i pouzdana IT podrška na lokaciji ili udaljeno.
-      </span>
-    </div>
-  </div>
-</section>
-
-<section id="prodaja" class="services-strip services-strip--products">
-  <div class="section-title">
-    <span></span>
-    <h2>Prodaja opreme</h2>
-    <span></span>
-  </div>
-
-  <div class="service-icons service-icons-4">
-    <a class="service-icon" href="racunari.html">
-      <img src="images/icon-racunari.png" alt="Računari">
-      <p class="title">Računari</p>
-      <span class="desc">Konfiguracije za kuću, kancelariju i gaming.</span>
+    <a href="o-nama.html" class="hero-button hero-button-primary">
+      Kontakt informacije
     </a>
+  </section>
+</main>
 
-    <a class="service-icon" href="monitori.html">
-      <img src="images/icon-monitori.png" alt="Monitori">
-      <p class="title">Monitori</p>
-      <span class="desc">Office, gaming i profesionalni monitori.</span>
-    </a>
-
-    <a class="service-icon" href="laptopi.html">
-      <img src="images/icon-laptopi.png" alt="Laptopi">
-      <p class="title">Laptopi</p>
-      <span class="desc">Poslovni i kućni modeli – povoljno i pouzdano.</span>
-    </a>
-
-    <a class="service-icon" href="toneri.html">
-      <img src="images/icon-toneri.png" alt="Toneri i kertridži">
-      <p class="title">Toneri &amp; Kertridži</p>
-      <span class="desc">Originalni i zamjenski za većinu printera.</span>
-    </a>
-  </div>
-</section>
-
-  
 <footer class="site-footer">
-  <p>© 2026 AMEA Tech d.o.o.</p>
+  <div>
+    <img src="images/logo.png" alt="AMEA Tech">
+    <p>Prodaja, servis i pouzdana IT podrška.</p>
+  </div>
+
+  <p>© 2026 AMEA Tech d.o.o. Sva prava zadržana.</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
