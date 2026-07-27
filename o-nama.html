@@ -8,14 +8,14 @@
   <meta name="description" content="Saznajte više o firmi AMEA Tech d.o.o., našim uslugama, lokaciji i kontakt informacijama.">
 
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="stylesheet" href="home.css?v=1">
+  <link rel="stylesheet" href="home.css?v=11">
 </head>
 
 <body class="site-page">
 <header class="subpage-hero">
   <nav class="navbar shell">
     <a href="index.html" class="navbar-logo" aria-label="AMEA Tech početna">
-      <img src="images/logo.png" alt="AMEA Tech d.o.o.">
+      <img src="images/amea-logo.png" alt="AMEA Tech d.o.o.">
     </a>
 
     <button class="menu-toggle" type="button" aria-label="Otvori meni" aria-expanded="false">
@@ -24,7 +24,6 @@
 
     <div class="navbar-links">
       <a href="index.html">Početna</a>
-      <a href="index.html#usluge">Usluge</a>
       <a href="index.html#prodaja">Prodaja</a>
       <a href="#kontakt" class="nav-contact">Kontakt</a>
     </div>
@@ -224,23 +223,13 @@
 
 <footer class="footer shell">
   <div class="footer-brand">
-    <img src="images/logo.png" alt="AMEA Tech">
+    <img src="images/amea-logo.png" alt="AMEA Tech">
     <p>Prodaja, servis i pouzdana IT podrška.</p>
   </div>
 
   <p>© 2026 AMEA Tech d.o.o. Sva prava zadržana.</p>
 </footer>
 
-<script>
-  const toggle = document.querySelector(".menu-toggle");
-  const links = document.querySelector(".navbar-links");
-
-  if (toggle && links) {
-    toggle.addEventListener("click", () => {
-      const open = links.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
-    });
-  }
-</script>
+<script src="script.js?v=11"></script>
 </body>
 </html>
