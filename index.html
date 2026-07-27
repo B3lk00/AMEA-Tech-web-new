@@ -5,243 +5,229 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>AMEA Tech d.o.o. | Prodaja, servis i IT podrška</title>
+  <meta name="description" content="Prodaja i servis računara, laptopa, printera, tonera i profesionalna IT podrška.">
 
-  <meta
-    name="description"
-    content="AMEA Tech pruža prodaju i servis računara i laptopa, održavanje printera, prodaju tonera i pouzdanu IT podršku."
-  >
-
-  <link rel="stylesheet" href="style.css?v=5">
   <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="home.css?v=1">
 </head>
 
-<body class="home">
+<body class="site-page">
+<header class="hero">
+  <nav class="navbar shell">
+    <a href="index.html" class="navbar-logo" aria-label="AMEA Tech početna">
+      <img src="images/logo.png" alt="AMEA Tech d.o.o.">
+    </a>
 
-<header class="home-hero">
-  <nav class="home-nav">
-<a href="index.html" class="home-logo" aria-label="AMEA Tech početna">
-  <img src="images/logo.png" alt="AMEA Tech logo">
-</a>
+    <button class="menu-toggle" type="button" aria-label="Otvori meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-  <span class="brand-logo-text">
-    <strong>AMEA Tech</strong>
-    <small>d.o.o.</small>
-  </span>
-</a>
-
-    <div class="home-nav-links">
+    <div class="navbar-links">
       <a href="#usluge">Usluge</a>
       <a href="#prodaja">Prodaja</a>
       <a href="o-nama.html">O nama</a>
+      <a href="o-nama.html#kontakt" class="nav-contact">Kontakt</a>
     </div>
   </nav>
 
-  <div class="hero-decoration hero-decoration-one"></div>
-  <div class="hero-decoration hero-decoration-two"></div>
-  <div class="hero-background-logo"></div>
+  <div class="hero-orbit hero-orbit-left"></div>
+  <div class="hero-orbit hero-orbit-right"></div>
+  <div class="hero-circuit hero-circuit-left"></div>
+  <div class="hero-circuit hero-circuit-right"></div>
 
-  <div class="home-hero-content">
-    <div class="hero-badge">
-      AMEA Tech d.o.o.
-    </div>
+  <div class="hero-inner shell">
+    <span class="eyebrow">AMEA TECH D.O.O.</span>
 
     <h1>
       Tehnologija na koju se
       <span>možete osloniti.</span>
     </h1>
 
-    <p class="hero-description">
+    <p class="hero-copy">
       Prodaja i servis računara, laptopa, printera i tonera,
       uz brzu i pouzdanu IT podršku za privatne i poslovne korisnike.
     </p>
 
     <div class="hero-actions">
-      <a href="#prodaja" class="hero-button hero-button-primary">
+      <a href="#prodaja" class="button button-primary">
         Pogledaj opremu
+        <span>→</span>
       </a>
 
-      <a href="o-nama.html" class="hero-button hero-button-secondary">
+      <a href="o-nama.html" class="button button-secondary">
         Saznaj više
+        <span>→</span>
       </a>
     </div>
 
-    <div class="tech-clock-panel">
-      <div class="clock-main-row">
-        <span class="clock-icon">◷</span>
-        <div class="tech-time" id="techTime">00:00:00</div>
-      </div>
-
-      <div class="clock-date-row">
-        <span>Datum</span>
-        <div class="tech-date" id="techDate">00.00.0000.</div>
-      </div>
+    <div class="hero-planet" aria-hidden="true">
+      <img src="images/logo.png" alt="">
     </div>
   </div>
 
-  <a href="#usluge" class="scroll-indicator" aria-label="Idi na usluge">
-    <span></span>
-  </a>
+  <section id="usluge" class="quick-services shell">
+    <article>
+      <div class="quick-icon quick-icon-blue">
+        <img src="images/service-pc.png" alt="">
+      </div>
+      <div>
+        <h2>Servis uređaja</h2>
+        <p>Dijagnostika, popravak i održavanje računara i laptopa.</p>
+      </div>
+    </article>
+
+    <article>
+      <div class="quick-icon quick-icon-orange">
+        <img src="images/service-printer.png" alt="">
+      </div>
+      <div>
+        <h2>Printeri i toneri</h2>
+        <p>Servis printera i kopir aparata te prodaja tonera.</p>
+      </div>
+    </article>
+
+    <article>
+      <div class="quick-icon quick-icon-blue">
+        <img src="images/service-support.png" alt="">
+      </div>
+      <div>
+        <h2>IT podrška</h2>
+        <p>Brza podrška na lokaciji ili udaljeno.</p>
+      </div>
+    </article>
+
+    <article>
+      <div class="quick-icon quick-icon-orange">
+        <img src="images/icon-racunari.png" alt="">
+      </div>
+      <div>
+        <h2>Prodaja opreme</h2>
+        <p>Računari, laptopi, monitori, toneri i ostala oprema.</p>
+      </div>
+    </article>
+  </section>
 </header>
 
 <main>
-  <section id="usluge" class="home-section">
-    <div class="home-section-heading">
+  <section class="content-section shell">
+    <div class="section-heading">
       <div>
-        <span class="section-label">Šta nudimo</span>
-        <h2>Naše usluge</h2>
+        <span class="section-kicker">Zašto AMEA Tech</span>
+        <h2>Kompletna IT usluga na jednom mjestu.</h2>
       </div>
 
       <p>
-        Sve što vam je potrebno za pouzdan i nesmetan rad IT opreme.
+        Od savjeta i kupovine do servisa i održavanja,
+        trudimo se ponuditi rješenje koje je jasno, pouzdano i prilagođeno vašim potrebama.
       </p>
     </div>
 
-    <div class="home-card-grid">
-      <article class="home-service-card">
-        <div class="home-card-icon">
-          <img src="images/service-pc.png" alt="">
-        </div>
-
-        <div class="home-card-number">01</div>
-
-        <h3>Servis računara</h3>
-
-        <p>
-          Dijagnostika, popravak, čišćenje i nadogradnja računara i laptopa.
-        </p>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <span class="feature-number">01</span>
+        <img src="images/service-pc.png" alt="">
+        <h3>Servis računara i laptopa</h3>
+        <p>Dijagnostika, čišćenje, nadogradnja i popravka opreme.</p>
       </article>
 
-      <article class="home-service-card">
-        <div class="home-card-icon">
-          <img src="images/service-printer.png" alt="">
-        </div>
-
-        <div class="home-card-number">02</div>
-
-        <h3>Održavanje štampača</h3>
-
-        <p>
-          Servis i redovno održavanje printera i kopir aparata.
-        </p>
+      <article class="feature-card">
+        <span class="feature-number">02</span>
+        <img src="images/service-printer.png" alt="">
+        <h3>Održavanje printera</h3>
+        <p>Redovan servis printera i kopir aparata za kuću i firmu.</p>
       </article>
 
-      <article class="home-service-card">
-        <div class="home-card-icon">
-          <img src="images/service-toner.png" alt="">
-        </div>
-
-        <div class="home-card-number">03</div>
-
-        <h3>Prodaja tonera</h3>
-
-        <p>
-          Originalni i zamjenski toneri i kertridži za veliki broj modela.
-        </p>
+      <article class="feature-card">
+        <span class="feature-number">03</span>
+        <img src="images/service-toner.png" alt="">
+        <h3>Toneri i kertridži</h3>
+        <p>Originalni i zamjenski potrošni materijal za veliki broj modela.</p>
       </article>
 
-      <article class="home-service-card">
-        <div class="home-card-icon">
-          <img src="images/service-support.png" alt="">
-        </div>
-
-        <div class="home-card-number">04</div>
-
-        <h3>IT podrška</h3>
-
-        <p>
-          Brza podrška na lokaciji ili udaljeno za privatne i poslovne korisnike.
-        </p>
+      <article class="feature-card">
+        <span class="feature-number">04</span>
+        <img src="images/service-support.png" alt="">
+        <h3>Pouzdana IT podrška</h3>
+        <p>Podrška na lokaciji ili udaljeno za privatne i poslovne korisnike.</p>
       </article>
     </div>
   </section>
 
-  <section id="prodaja" class="home-section products-home-section">
-    <div class="home-section-heading">
+  <section id="prodaja" class="content-section products-section shell">
+    <div class="section-heading">
       <div>
-        <span class="section-label">Odaberite kategoriju</span>
-        <h2>Prodaja opreme</h2>
+        <span class="section-kicker">Prodaja opreme</span>
+        <h2>Odaberite kategoriju.</h2>
       </div>
 
       <p>
-        Pregledajte dostupne računare, laptope, monitore, tonere i kertridže.
+        Pregledajte trenutno dostupne uređaje i opremu.
       </p>
     </div>
 
-    <div class="product-category-grid">
-      <a href="racunari.html" class="product-category-card">
-        <div class="product-category-icon">
+    <div class="product-grid">
+      <a href="racunari.html" class="product-tile">
+        <div class="product-image">
           <img src="images/icon-racunari.png" alt="Računari">
         </div>
-
-        <div class="product-category-content">
-          <span>Računari</span>
+        <div>
+          <h3>Računari</h3>
           <p>Kućne, poslovne i gaming konfiguracije.</p>
         </div>
-
-        <div class="product-category-arrow">→</div>
+        <span class="tile-arrow">→</span>
       </a>
 
-      <a href="laptopi.html" class="product-category-card">
-        <div class="product-category-icon">
+      <a href="laptopi.html" class="product-tile">
+        <div class="product-image">
           <img src="images/icon-laptopi.png" alt="Laptopi">
         </div>
-
-        <div class="product-category-content">
-          <span>Laptopi</span>
-          <p>Poslovni i kućni modeli za svaki budžet.</p>
+        <div>
+          <h3>Laptopi</h3>
+          <p>Poslovni i kućni modeli za različite potrebe.</p>
         </div>
-
-        <div class="product-category-arrow">→</div>
+        <span class="tile-arrow">→</span>
       </a>
 
-      <a href="monitori.html" class="product-category-card">
-        <div class="product-category-icon">
+      <a href="monitori.html" class="product-tile">
+        <div class="product-image">
           <img src="images/icon-monitori.png" alt="Monitori">
         </div>
-
-        <div class="product-category-content">
-          <span>Monitori</span>
+        <div>
+          <h3>Monitori</h3>
           <p>Office, gaming i profesionalni monitori.</p>
         </div>
-
-        <div class="product-category-arrow">→</div>
+        <span class="tile-arrow">→</span>
       </a>
 
-      <a href="toneri.html" class="product-category-card">
-        <div class="product-category-icon">
+      <a href="toneri.html" class="product-tile">
+        <div class="product-image">
           <img src="images/icon-toneri.png" alt="Toneri i kertridži">
         </div>
-
-        <div class="product-category-content">
-          <span>Toneri i kertridži</span>
+        <div>
+          <h3>Toneri i kertridži</h3>
           <p>Originalni i zamjenski za veliki broj printera.</p>
         </div>
-
-        <div class="product-category-arrow">→</div>
+        <span class="tile-arrow">→</span>
       </a>
     </div>
   </section>
 
-  <section class="home-cta">
-    <div class="home-cta-glow"></div>
-
+  <section class="cta-section shell">
     <div>
-      <span class="section-label">Trebate pomoć?</span>
-      <h2>Pouzdan partner za vašu IT opremu.</h2>
-
-      <p>
-        Obratite nam se za servis, savjet, nabavku opreme ili poslovnu IT podršku.
-      </p>
+      <span class="section-kicker">Trebate pomoć?</span>
+      <h2>Javite nam se i pronađimo pravo rješenje.</h2>
+      <p>Servis, savjet, nabavka opreme ili poslovna IT podrška.</p>
     </div>
 
-    <a href="o-nama.html" class="hero-button hero-button-primary">
+    <a href="o-nama.html#kontakt" class="button button-primary">
       Kontakt informacije
+      <span>→</span>
     </a>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div>
+<footer class="footer shell">
+  <div class="footer-brand">
     <img src="images/logo.png" alt="AMEA Tech">
     <p>Prodaja, servis i pouzdana IT podrška.</p>
   </div>
@@ -250,5 +236,16 @@
 </footer>
 
 <script src="script.js?v=3"></script>
+<script>
+  const toggle = document.querySelector(".menu-toggle");
+  const links = document.querySelector(".navbar-links");
+
+  if (toggle && links) {
+    toggle.addEventListener("click", () => {
+      const open = links.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+  }
+</script>
 </body>
 </html>
