@@ -1,23 +1,39 @@
-function updateTechClock() {
-  const timeEl = document.getElementById("techTime");
-  const dateEl = document.getElementById("techDate");
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".navbar-links");
 
-  if (!timeEl || !dateEl) return;
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-  const now = new Date();
-
-  const h = String(now.getHours()).padStart(2, "0");
-  const m = String(now.getMinutes()).padStart(2, "0");
-  const s = String(now.getSeconds()).padStart(2, "0");
-
-  timeEl.textContent = `${h}:${m}:${s}`;
-
-  const d = String(now.getDate()).padStart(2, "0");
-  const mo = String(now.getMonth() + 1).padStart(2, "0");
-  const y = now.getFullYear();
-
-  dateEl.textContent = `${d}.${mo}.${y}`;
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
 }
 
-setInterval(updateTechClock, 1000);
-updateTechClock();
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -45px 0px",
+    }
+  );
+
+  revealElements.forEach((element) => revealObserver.observe(element));
+} else {
+  revealElements.forEach((element) => element.classList.add("visible"));
+}
